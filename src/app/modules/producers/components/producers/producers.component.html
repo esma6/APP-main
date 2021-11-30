@@ -1,0 +1,42 @@
+<po-loading-overlay *ngIf="loadingProducers" p-text="Carregando">
+</po-loading-overlay>
+
+
+<po-page-default
+p-title="Producer Ranking"
+  [p-breadcrumb]="breadcrumb"
+
+>
+
+<po-list-view
+  p-property-title="name"
+  [p-items]="producers"
+>
+  <ng-template p-list-view-content-template let-item class="po-mt-0">
+
+    <div class="po-row">
+      <po-avatar class="po-md-2"  p-src="http://lorempixel.com.br/140/140/?2"> </po-avatar>
+
+      <div class="po-md-3" >
+        <div class="po-row" style="padding: 0 !important; margin: 0 !;" >
+          <po-info  p-label="Address" class="po-md-12" [p-value]="item.property_address.city + ' - '+ item.property_address.state + ' ' + item.property_address.country">
+          </po-info>
+          <po-info  class="po-md-12" [p-value]="'Cep: '+item.property_address.cep">
+
+          </po-info>
+        </div>
+
+      </div>
+
+      <po-info class="po-md-3" p-label="Inspections Received" [p-value]="item.totalRequests"></po-info>
+      <po-info class="po-md-2" p-label="Isa" [p-value]="item.isaAverage"></po-info>
+      <po-button p-label="Report Producer" p-type="danger" (p-click)="reportProducer(item)"> </po-button>
+    </div>
+    <div class="po-row">
+      <po-info [p-value]="'Wallet: '+item.producer_wallet" style="margin-left: 10px;">
+      </po-info>
+    </div>
+  </ng-template>
+</po-list-view>
+
+</po-page-default>

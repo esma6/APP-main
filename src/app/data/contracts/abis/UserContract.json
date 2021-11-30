@@ -1,0 +1,1525 @@
+{
+  "contractName": "UserContract",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "usersCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "getUser",
+      "outputs": [
+        {
+          "internalType": "enum UserContract.UserType",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getUserTypes",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.9+commit.e5eed63a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"getUser\",\"outputs\":[{\"internalType\":\"enum UserContract.UserType\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getUserTypes\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"usersCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"This contract work as a centralized user's system, where all users has your userType here\",\"kind\":\"dev\",\"methods\":{\"getUser(address)\":{\"details\":\"Returns the user type if the user is registered\",\"params\":{\"addr\":\"the user address that want check if exists\"}},\"getUserTypes()\":{\"details\":\"Returns the enum UserType of the system\"}},\"title\":\"UserContract\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/Breno/Downloads/SintropContract/contracts/UserContract.sol\":\"UserContract\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/Breno/Downloads/SintropContract/contracts/UserContract.sol\":{\"keccak256\":\"0xbd938b28a90dbc3bc48fdd6f06bcdaab1b6a41cd6474bf902421dd7bff08a0a5\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://a6840fd294114e6ee87c13f52cfd217df3db14346f4b348640e4e3ebb6671b02\",\"dweb:/ipfs/QmXUoCzJPkaNuiKQhkv3UERAVAEAHim5oDUNSAGxYm48mf\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610226806100206000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80636337dc1a146100465780636ba13a82146100b85780636f77926b146100cf575b600080fd5b604080518082018252600880825267282927a22aa1a2a960c11b60208084019190915283518085018552918252671050d512559254d560c21b8282015283518085018552600a8152692922a9a2a0a921a422a960b11b9181019190915292516100af9390610155565b60405180910390f35b6100c160015481565b6040519081526020016100af565b6100fb6100dd366004610198565b6001600160a01b031660009081526020819052604090205460ff1690565b6040516100af91906101c8565b6000815180845260005b8181101561012e57602081850181015186830182015201610112565b81811115610140576000602083870101525b50601f01601f19169290920160200192915050565b6060815260006101686060830186610108565b828103602084015261017a8186610108565b9050828103604084015261018e8185610108565b9695505050505050565b6000602082840312156101aa57600080fd5b81356001600160a01b03811681146101c157600080fd5b9392505050565b60208101600483106101ea57634e487b7160e01b600052602160045260246000fd5b9190529056fea26469706673582212207bd7dc0143696d54640d3a2b1ab2133b8c6da6f675bf52658f8694f40a9a48f764736f6c63430008090033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c80636337dc1a146100465780636ba13a82146100b85780636f77926b146100cf575b600080fd5b604080518082018252600880825267282927a22aa1a2a960c11b60208084019190915283518085018552918252671050d512559254d560c21b8282015283518085018552600a8152692922a9a2a0a921a422a960b11b9181019190915292516100af9390610155565b60405180910390f35b6100c160015481565b6040519081526020016100af565b6100fb6100dd366004610198565b6001600160a01b031660009081526020819052604090205460ff1690565b6040516100af91906101c8565b6000815180845260005b8181101561012e57602081850181015186830182015201610112565b81811115610140576000602083870101525b50601f01601f19169290920160200192915050565b6060815260006101686060830186610108565b828103602084015261017a8186610108565b9050828103604084015261018e8185610108565b9695505050505050565b6000602082840312156101aa57600080fd5b81356001600160a01b03811681146101c157600080fd5b9392505050565b60208101600483106101ea57634e487b7160e01b600052602160045260246000fd5b9190529056fea26469706673582212207bd7dc0143696d54640d3a2b1ab2133b8c6da6f675bf52658f8694f40a9a48f764736f6c63430008090033",
+  "immutableReferences": {},
+  "sourceMap": "214:919:8:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "214:919:8:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;977:153;1077:45;;;;;;;;;;;;-1:-1:-1;;;1077:45:8;;;;;;;;;;;;;;;;;;-1:-1:-1;;;1077:45:8;;;;;;;;;;;;;;-1:-1:-1;;;1077:45:8;;;;;;;977:153;;;;1077:45;977:153;:::i;:::-;;;;;;;;351:22;;;;;;;;;1188:25:13;;;1176:2;1161:18;351:22:8;1042:177:13;804:98:8;;;;;;:::i;:::-;-1:-1:-1;;;;;883:11:8;855:8;883:11;;;;;;;;;;;;;;804:98;;;;;;;;:::i;14:472:13:-;56:3;94:5;88:12;121:6;116:3;109:19;146:1;156:162;170:6;167:1;164:13;156:162;;;232:4;288:13;;;284:22;;278:29;260:11;;;256:20;;249:59;185:12;156:162;;;336:6;333:1;330:13;327:87;;;402:1;395:4;386:6;381:3;377:16;373:27;366:38;327:87;-1:-1:-1;468:2:13;447:15;-1:-1:-1;;443:29:13;434:39;;;;475:4;430:50;;14:472;-1:-1:-1;;14:472:13:o;491:546::-;736:2;725:9;718:21;699:4;762:45;803:2;792:9;788:18;780:6;762:45;:::i;:::-;855:9;847:6;843:22;838:2;827:9;823:18;816:50;889:33;915:6;907;889:33;:::i;:::-;875:47;;970:9;962:6;958:22;953:2;942:9;938:18;931:50;998:33;1024:6;1016;998:33;:::i;:::-;990:41;491:546;-1:-1:-1;;;;;;491:546:13:o;1224:286::-;1283:6;1336:2;1324:9;1315:7;1311:23;1307:32;1304:52;;;1352:1;1349;1342:12;1304:52;1378:23;;-1:-1:-1;;;;;1430:31:13;;1420:42;;1410:70;;1476:1;1473;1466:12;1410:70;1499:5;1224:286;-1:-1:-1;;;1224:286:13:o;1515:341::-;1660:2;1645:18;;1693:1;1682:13;;1672:144;;1738:10;1733:3;1729:20;1726:1;1719:31;1773:4;1770:1;1763:15;1801:4;1798:1;1791:15;1672:144;1825:25;;;1515:341;:::o",
+  "source": "pragma solidity >=0.5.0 <=0.9.0;\r\n// SPDX-License-Identifier: GPL-3.0-or-later\r\n\r\n\r\n/**\r\n* @title UserContract\r\n* @dev This contract work as a centralized user's system, where all users has your userType here\r\n*/\r\ncontract UserContract {\r\n    enum UserType { UNDEFINED, PRODUCER, ACTIVIST, RESEARCHER }\r\n\r\n    mapping(address => UserType) users;\r\n    uint public usersCount;\r\n\r\n    /**\r\n   * @dev Add new user in the system\r\n   * @param addr The address of the user\r\n   * @param userType The type of the user - enum UserType\r\n   */\r\n    function addUser(address addr, UserType userType) internal {\r\n        users[addr] = userType;\r\n        usersCount++;\r\n    }\r\n\r\n    /**\r\n   * @dev Returns the user type if the user is registered\r\n   * @param addr the user address that want check if exists\r\n   */\r\n    function getUser(address addr) public view returns(UserType) {\r\n        return users[addr];\r\n    }\r\n\r\n    /**\r\n   * @dev Returns the enum UserType of the system\r\n   */\r\n    function getUserTypes() public pure returns(string memory, string memory, string memory) {\r\n        return (\"PRODUCER\", \"ACTIVIST\", \"RESEARCHER\");\r\n    }\r\n}",
+  "sourcePath": "C:\\Users\\Breno\\Downloads\\SintropContract\\contracts\\UserContract.sol",
+  "ast": {
+    "absolutePath": "/C/Users/Breno/Downloads/SintropContract/contracts/UserContract.sol",
+    "exportedSymbols": {
+      "UserContract": [
+        1366
+      ]
+    },
+    "id": 1367,
+    "license": "GPL-3.0-or-later",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1303,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".0",
+          "<=",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:8"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "UserContract",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 1304,
+          "nodeType": "StructuredDocumentation",
+          "src": "84:128:8",
+          "text": " @title UserContract\n @dev This contract work as a centralized user's system, where all users has your userType here"
+        },
+        "fullyImplemented": true,
+        "id": 1366,
+        "linearizedBaseContracts": [
+          1366
+        ],
+        "name": "UserContract",
+        "nameLocation": "223:12:8",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "UserContract.UserType",
+            "id": 1309,
+            "members": [
+              {
+                "id": 1305,
+                "name": "UNDEFINED",
+                "nameLocation": "259:9:8",
+                "nodeType": "EnumValue",
+                "src": "259:9:8"
+              },
+              {
+                "id": 1306,
+                "name": "PRODUCER",
+                "nameLocation": "270:8:8",
+                "nodeType": "EnumValue",
+                "src": "270:8:8"
+              },
+              {
+                "id": 1307,
+                "name": "ACTIVIST",
+                "nameLocation": "280:8:8",
+                "nodeType": "EnumValue",
+                "src": "280:8:8"
+              },
+              {
+                "id": 1308,
+                "name": "RESEARCHER",
+                "nameLocation": "290:10:8",
+                "nodeType": "EnumValue",
+                "src": "290:10:8"
+              }
+            ],
+            "name": "UserType",
+            "nameLocation": "248:8:8",
+            "nodeType": "EnumDefinition",
+            "src": "243:59:8"
+          },
+          {
+            "constant": false,
+            "id": 1314,
+            "mutability": "mutable",
+            "name": "users",
+            "nameLocation": "339:5:8",
+            "nodeType": "VariableDeclaration",
+            "scope": 1366,
+            "src": "310:34:8",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_enum$_UserType_$1309_$",
+              "typeString": "mapping(address => enum UserContract.UserType)"
+            },
+            "typeName": {
+              "id": 1313,
+              "keyType": {
+                "id": 1310,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "318:7:8",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "310:28:8",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_enum$_UserType_$1309_$",
+                "typeString": "mapping(address => enum UserContract.UserType)"
+              },
+              "valueType": {
+                "id": 1312,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 1311,
+                  "name": "UserType",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 1309,
+                  "src": "329:8:8"
+                },
+                "referencedDeclaration": 1309,
+                "src": "329:8:8",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_UserType_$1309",
+                  "typeString": "enum UserContract.UserType"
+                }
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "functionSelector": "6ba13a82",
+            "id": 1316,
+            "mutability": "mutable",
+            "name": "usersCount",
+            "nameLocation": "363:10:8",
+            "nodeType": "VariableDeclaration",
+            "scope": 1366,
+            "src": "351:22:8",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 1315,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "351:4:8",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1334,
+              "nodeType": "Block",
+              "src": "596:64:8",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1329,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 1325,
+                        "name": "users",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1314,
+                        "src": "607:5:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_enum$_UserType_$1309_$",
+                          "typeString": "mapping(address => enum UserContract.UserType)"
+                        }
+                      },
+                      "id": 1327,
+                      "indexExpression": {
+                        "id": 1326,
+                        "name": "addr",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1319,
+                        "src": "613:4:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "607:11:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_UserType_$1309",
+                        "typeString": "enum UserContract.UserType"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 1328,
+                      "name": "userType",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1322,
+                      "src": "621:8:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_UserType_$1309",
+                        "typeString": "enum UserContract.UserType"
+                      }
+                    },
+                    "src": "607:22:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_UserType_$1309",
+                      "typeString": "enum UserContract.UserType"
+                    }
+                  },
+                  "id": 1330,
+                  "nodeType": "ExpressionStatement",
+                  "src": "607:22:8"
+                },
+                {
+                  "expression": {
+                    "id": 1332,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "++",
+                    "prefix": false,
+                    "src": "640:12:8",
+                    "subExpression": {
+                      "id": 1331,
+                      "name": "usersCount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1316,
+                      "src": "640:10:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 1333,
+                  "nodeType": "ExpressionStatement",
+                  "src": "640:12:8"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 1317,
+              "nodeType": "StructuredDocumentation",
+              "src": "382:149:8",
+              "text": " @dev Add new user in the system\n @param addr The address of the user\n @param userType The type of the user - enum UserType"
+            },
+            "id": 1335,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addUser",
+            "nameLocation": "546:7:8",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1323,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1319,
+                  "mutability": "mutable",
+                  "name": "addr",
+                  "nameLocation": "562:4:8",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1335,
+                  "src": "554:12:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1318,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "554:7:8",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1322,
+                  "mutability": "mutable",
+                  "name": "userType",
+                  "nameLocation": "577:8:8",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1335,
+                  "src": "568:17:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_UserType_$1309",
+                    "typeString": "enum UserContract.UserType"
+                  },
+                  "typeName": {
+                    "id": 1321,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1320,
+                      "name": "UserType",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1309,
+                      "src": "568:8:8"
+                    },
+                    "referencedDeclaration": 1309,
+                    "src": "568:8:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_UserType_$1309",
+                      "typeString": "enum UserContract.UserType"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "553:33:8"
+            },
+            "returnParameters": {
+              "id": 1324,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "596:0:8"
+            },
+            "scope": 1366,
+            "src": "537:123:8",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1348,
+              "nodeType": "Block",
+              "src": "865:37:8",
+              "statements": [
+                {
+                  "expression": {
+                    "baseExpression": {
+                      "id": 1344,
+                      "name": "users",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1314,
+                      "src": "883:5:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_enum$_UserType_$1309_$",
+                        "typeString": "mapping(address => enum UserContract.UserType)"
+                      }
+                    },
+                    "id": 1346,
+                    "indexExpression": {
+                      "id": 1345,
+                      "name": "addr",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1338,
+                      "src": "889:4:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "883:11:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_UserType_$1309",
+                      "typeString": "enum UserContract.UserType"
+                    }
+                  },
+                  "functionReturnParameters": 1343,
+                  "id": 1347,
+                  "nodeType": "Return",
+                  "src": "876:18:8"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 1336,
+              "nodeType": "StructuredDocumentation",
+              "src": "668:130:8",
+              "text": " @dev Returns the user type if the user is registered\n @param addr the user address that want check if exists"
+            },
+            "functionSelector": "6f77926b",
+            "id": 1349,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getUser",
+            "nameLocation": "813:7:8",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1339,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1338,
+                  "mutability": "mutable",
+                  "name": "addr",
+                  "nameLocation": "829:4:8",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1349,
+                  "src": "821:12:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1337,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "821:7:8",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "820:14:8"
+            },
+            "returnParameters": {
+              "id": 1343,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1342,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1349,
+                  "src": "855:8:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_UserType_$1309",
+                    "typeString": "enum UserContract.UserType"
+                  },
+                  "typeName": {
+                    "id": 1341,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1340,
+                      "name": "UserType",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1309,
+                      "src": "855:8:8"
+                    },
+                    "referencedDeclaration": 1309,
+                    "src": "855:8:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_UserType_$1309",
+                      "typeString": "enum UserContract.UserType"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "854:10:8"
+            },
+            "scope": 1366,
+            "src": "804:98:8",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1364,
+              "nodeType": "Block",
+              "src": "1066:64:8",
+              "statements": [
+                {
+                  "expression": {
+                    "components": [
+                      {
+                        "hexValue": "50524f4455434552",
+                        "id": 1359,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1085:10:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_a26228957b4ff1ee8d2f4555d58f130924b7939446a6af38afd42a510a51fbb4",
+                          "typeString": "literal_string \"PRODUCER\""
+                        },
+                        "value": "PRODUCER"
+                      },
+                      {
+                        "hexValue": "4143544956495354",
+                        "id": 1360,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1097:10:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_ceacf7e7ff0651ea268e9f5ca8458f1339d634deac46360e7588ab8d3bcc1e20",
+                          "typeString": "literal_string \"ACTIVIST\""
+                        },
+                        "value": "ACTIVIST"
+                      },
+                      {
+                        "hexValue": "52455345415243484552",
+                        "id": 1361,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1109:12:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_3760dd8fcbb657f4b540775c98e6991534214c1a9382d68b77c9f5585415ea09",
+                          "typeString": "literal_string \"RESEARCHER\""
+                        },
+                        "value": "RESEARCHER"
+                      }
+                    ],
+                    "id": 1362,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "1084:38:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_stringliteral_a26228957b4ff1ee8d2f4555d58f130924b7939446a6af38afd42a510a51fbb4_$_t_stringliteral_ceacf7e7ff0651ea268e9f5ca8458f1339d634deac46360e7588ab8d3bcc1e20_$_t_stringliteral_3760dd8fcbb657f4b540775c98e6991534214c1a9382d68b77c9f5585415ea09_$",
+                      "typeString": "tuple(literal_string \"PRODUCER\",literal_string \"ACTIVIST\",literal_string \"RESEARCHER\")"
+                    }
+                  },
+                  "functionReturnParameters": 1358,
+                  "id": 1363,
+                  "nodeType": "Return",
+                  "src": "1077:45:8"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 1350,
+              "nodeType": "StructuredDocumentation",
+              "src": "910:61:8",
+              "text": " @dev Returns the enum UserType of the system"
+            },
+            "functionSelector": "6337dc1a",
+            "id": 1365,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getUserTypes",
+            "nameLocation": "986:12:8",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1351,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "998:2:8"
+            },
+            "returnParameters": {
+              "id": 1358,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1353,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1365,
+                  "src": "1021:13:8",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1352,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1021:6:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1355,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1365,
+                  "src": "1036:13:8",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1354,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1036:6:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1357,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1365,
+                  "src": "1051:13:8",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1356,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1051:6:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1020:45:8"
+            },
+            "scope": 1366,
+            "src": "977:153:8",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1367,
+        "src": "214:919:8",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:1133:8"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/Users/Breno/Downloads/SintropContract/contracts/UserContract.sol",
+    "exportedSymbols": {
+      "UserContract": [
+        1366
+      ]
+    },
+    "id": 1367,
+    "license": "GPL-3.0-or-later",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1303,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".0",
+          "<=",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:8"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "UserContract",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 1304,
+          "nodeType": "StructuredDocumentation",
+          "src": "84:128:8",
+          "text": " @title UserContract\n @dev This contract work as a centralized user's system, where all users has your userType here"
+        },
+        "fullyImplemented": true,
+        "id": 1366,
+        "linearizedBaseContracts": [
+          1366
+        ],
+        "name": "UserContract",
+        "nameLocation": "223:12:8",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "UserContract.UserType",
+            "id": 1309,
+            "members": [
+              {
+                "id": 1305,
+                "name": "UNDEFINED",
+                "nameLocation": "259:9:8",
+                "nodeType": "EnumValue",
+                "src": "259:9:8"
+              },
+              {
+                "id": 1306,
+                "name": "PRODUCER",
+                "nameLocation": "270:8:8",
+                "nodeType": "EnumValue",
+                "src": "270:8:8"
+              },
+              {
+                "id": 1307,
+                "name": "ACTIVIST",
+                "nameLocation": "280:8:8",
+                "nodeType": "EnumValue",
+                "src": "280:8:8"
+              },
+              {
+                "id": 1308,
+                "name": "RESEARCHER",
+                "nameLocation": "290:10:8",
+                "nodeType": "EnumValue",
+                "src": "290:10:8"
+              }
+            ],
+            "name": "UserType",
+            "nameLocation": "248:8:8",
+            "nodeType": "EnumDefinition",
+            "src": "243:59:8"
+          },
+          {
+            "constant": false,
+            "id": 1314,
+            "mutability": "mutable",
+            "name": "users",
+            "nameLocation": "339:5:8",
+            "nodeType": "VariableDeclaration",
+            "scope": 1366,
+            "src": "310:34:8",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_enum$_UserType_$1309_$",
+              "typeString": "mapping(address => enum UserContract.UserType)"
+            },
+            "typeName": {
+              "id": 1313,
+              "keyType": {
+                "id": 1310,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "318:7:8",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "310:28:8",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_enum$_UserType_$1309_$",
+                "typeString": "mapping(address => enum UserContract.UserType)"
+              },
+              "valueType": {
+                "id": 1312,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 1311,
+                  "name": "UserType",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 1309,
+                  "src": "329:8:8"
+                },
+                "referencedDeclaration": 1309,
+                "src": "329:8:8",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_UserType_$1309",
+                  "typeString": "enum UserContract.UserType"
+                }
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "functionSelector": "6ba13a82",
+            "id": 1316,
+            "mutability": "mutable",
+            "name": "usersCount",
+            "nameLocation": "363:10:8",
+            "nodeType": "VariableDeclaration",
+            "scope": 1366,
+            "src": "351:22:8",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 1315,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "351:4:8",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1334,
+              "nodeType": "Block",
+              "src": "596:64:8",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1329,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 1325,
+                        "name": "users",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1314,
+                        "src": "607:5:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_address_$_t_enum$_UserType_$1309_$",
+                          "typeString": "mapping(address => enum UserContract.UserType)"
+                        }
+                      },
+                      "id": 1327,
+                      "indexExpression": {
+                        "id": 1326,
+                        "name": "addr",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1319,
+                        "src": "613:4:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "607:11:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_UserType_$1309",
+                        "typeString": "enum UserContract.UserType"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 1328,
+                      "name": "userType",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1322,
+                      "src": "621:8:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_UserType_$1309",
+                        "typeString": "enum UserContract.UserType"
+                      }
+                    },
+                    "src": "607:22:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_UserType_$1309",
+                      "typeString": "enum UserContract.UserType"
+                    }
+                  },
+                  "id": 1330,
+                  "nodeType": "ExpressionStatement",
+                  "src": "607:22:8"
+                },
+                {
+                  "expression": {
+                    "id": 1332,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "++",
+                    "prefix": false,
+                    "src": "640:12:8",
+                    "subExpression": {
+                      "id": 1331,
+                      "name": "usersCount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1316,
+                      "src": "640:10:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 1333,
+                  "nodeType": "ExpressionStatement",
+                  "src": "640:12:8"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 1317,
+              "nodeType": "StructuredDocumentation",
+              "src": "382:149:8",
+              "text": " @dev Add new user in the system\n @param addr The address of the user\n @param userType The type of the user - enum UserType"
+            },
+            "id": 1335,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addUser",
+            "nameLocation": "546:7:8",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1323,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1319,
+                  "mutability": "mutable",
+                  "name": "addr",
+                  "nameLocation": "562:4:8",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1335,
+                  "src": "554:12:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1318,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "554:7:8",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1322,
+                  "mutability": "mutable",
+                  "name": "userType",
+                  "nameLocation": "577:8:8",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1335,
+                  "src": "568:17:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_UserType_$1309",
+                    "typeString": "enum UserContract.UserType"
+                  },
+                  "typeName": {
+                    "id": 1321,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1320,
+                      "name": "UserType",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1309,
+                      "src": "568:8:8"
+                    },
+                    "referencedDeclaration": 1309,
+                    "src": "568:8:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_UserType_$1309",
+                      "typeString": "enum UserContract.UserType"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "553:33:8"
+            },
+            "returnParameters": {
+              "id": 1324,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "596:0:8"
+            },
+            "scope": 1366,
+            "src": "537:123:8",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1348,
+              "nodeType": "Block",
+              "src": "865:37:8",
+              "statements": [
+                {
+                  "expression": {
+                    "baseExpression": {
+                      "id": 1344,
+                      "name": "users",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1314,
+                      "src": "883:5:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_enum$_UserType_$1309_$",
+                        "typeString": "mapping(address => enum UserContract.UserType)"
+                      }
+                    },
+                    "id": 1346,
+                    "indexExpression": {
+                      "id": 1345,
+                      "name": "addr",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1338,
+                      "src": "889:4:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "883:11:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_UserType_$1309",
+                      "typeString": "enum UserContract.UserType"
+                    }
+                  },
+                  "functionReturnParameters": 1343,
+                  "id": 1347,
+                  "nodeType": "Return",
+                  "src": "876:18:8"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 1336,
+              "nodeType": "StructuredDocumentation",
+              "src": "668:130:8",
+              "text": " @dev Returns the user type if the user is registered\n @param addr the user address that want check if exists"
+            },
+            "functionSelector": "6f77926b",
+            "id": 1349,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getUser",
+            "nameLocation": "813:7:8",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1339,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1338,
+                  "mutability": "mutable",
+                  "name": "addr",
+                  "nameLocation": "829:4:8",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1349,
+                  "src": "821:12:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1337,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "821:7:8",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "820:14:8"
+            },
+            "returnParameters": {
+              "id": 1343,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1342,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1349,
+                  "src": "855:8:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_UserType_$1309",
+                    "typeString": "enum UserContract.UserType"
+                  },
+                  "typeName": {
+                    "id": 1341,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1340,
+                      "name": "UserType",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1309,
+                      "src": "855:8:8"
+                    },
+                    "referencedDeclaration": 1309,
+                    "src": "855:8:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_UserType_$1309",
+                      "typeString": "enum UserContract.UserType"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "854:10:8"
+            },
+            "scope": 1366,
+            "src": "804:98:8",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1364,
+              "nodeType": "Block",
+              "src": "1066:64:8",
+              "statements": [
+                {
+                  "expression": {
+                    "components": [
+                      {
+                        "hexValue": "50524f4455434552",
+                        "id": 1359,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1085:10:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_a26228957b4ff1ee8d2f4555d58f130924b7939446a6af38afd42a510a51fbb4",
+                          "typeString": "literal_string \"PRODUCER\""
+                        },
+                        "value": "PRODUCER"
+                      },
+                      {
+                        "hexValue": "4143544956495354",
+                        "id": 1360,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1097:10:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_ceacf7e7ff0651ea268e9f5ca8458f1339d634deac46360e7588ab8d3bcc1e20",
+                          "typeString": "literal_string \"ACTIVIST\""
+                        },
+                        "value": "ACTIVIST"
+                      },
+                      {
+                        "hexValue": "52455345415243484552",
+                        "id": 1361,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1109:12:8",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_3760dd8fcbb657f4b540775c98e6991534214c1a9382d68b77c9f5585415ea09",
+                          "typeString": "literal_string \"RESEARCHER\""
+                        },
+                        "value": "RESEARCHER"
+                      }
+                    ],
+                    "id": 1362,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "1084:38:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_stringliteral_a26228957b4ff1ee8d2f4555d58f130924b7939446a6af38afd42a510a51fbb4_$_t_stringliteral_ceacf7e7ff0651ea268e9f5ca8458f1339d634deac46360e7588ab8d3bcc1e20_$_t_stringliteral_3760dd8fcbb657f4b540775c98e6991534214c1a9382d68b77c9f5585415ea09_$",
+                      "typeString": "tuple(literal_string \"PRODUCER\",literal_string \"ACTIVIST\",literal_string \"RESEARCHER\")"
+                    }
+                  },
+                  "functionReturnParameters": 1358,
+                  "id": 1363,
+                  "nodeType": "Return",
+                  "src": "1077:45:8"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 1350,
+              "nodeType": "StructuredDocumentation",
+              "src": "910:61:8",
+              "text": " @dev Returns the enum UserType of the system"
+            },
+            "functionSelector": "6337dc1a",
+            "id": 1365,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getUserTypes",
+            "nameLocation": "986:12:8",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1351,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "998:2:8"
+            },
+            "returnParameters": {
+              "id": 1358,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1353,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1365,
+                  "src": "1021:13:8",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1352,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1021:6:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1355,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1365,
+                  "src": "1036:13:8",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1354,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1036:6:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1357,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1365,
+                  "src": "1051:13:8",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1356,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1051:6:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1020:45:8"
+            },
+            "scope": 1366,
+            "src": "977:153:8",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1367,
+        "src": "214:919:8",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:1133:8"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.9+commit.e5eed63a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.2.3",
+  "updatedAt": "2021-11-29T16:47:04.332Z",
+  "devdoc": {
+    "details": "This contract work as a centralized user's system, where all users has your userType here",
+    "kind": "dev",
+    "methods": {
+      "getUser(address)": {
+        "details": "Returns the user type if the user is registered",
+        "params": {
+          "addr": "the user address that want check if exists"
+        }
+      },
+      "getUserTypes()": {
+        "details": "Returns the enum UserType of the system"
+      }
+    },
+    "title": "UserContract",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

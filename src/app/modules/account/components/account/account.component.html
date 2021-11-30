@@ -1,0 +1,71 @@
+<po-loading-overlay *ngIf="loadingAccount" p-text="Carregando">
+</po-loading-overlay>
+
+
+
+<po-page-default *ngIf="accountDetails"
+[p-title]="accountRole+' Account'"
+  [p-breadcrumb]="breadcrumb"
+
+>
+
+<po-container >
+
+
+  <div class="po-row">
+
+    <po-avatar class="po-md-2"  p-src="http://lorempixel.com.br/140/140/?4"> </po-avatar>
+
+    <po-info class="po-lg-5" p-label="Name" [p-value]="accountDetails.name">
+
+    </po-info>
+
+    <div class="po-lg-5">
+      <po-info p-label="Address" class="col-lg-12"
+      [p-value]="accountRole == 'Producer'?
+      accountDetails.property_address.city + ' - ' +accountDetails.property_address.state+', '+accountDetails.property_address.country:
+      accountDetails.activistAddress.city + ' - ' +accountDetails.activistAddress.state+', '+accountDetails.activistAddress.country">
+      </po-info>
+
+    <po-info class="col-lg-12" [p-value]="accountRole == 'Producer'?'Zip Code: '+  accountDetails.property_address.cep:'Zip Code: '+ accountDetails.activistAddress.cep "></po-info>
+
+    </div>
+  </div>
+
+
+  <div class="po-row po-mt-2">
+    <po-widget class="po-lg-4 po-mb-1" p-title="Inpections">
+      <div class="po-font-subtitle po-text-center">{{accountDetails.totalRequests? accountDetails.totalRequests:accountDetails.totalInspections}}</div>
+    </po-widget>
+
+    <po-widget class="po-lg-4 po-mb-1" p-title="Isa" [p-primary]="true">
+      <div class="po-font-subtitle po-text-center">0</div>
+    </po-widget>
+
+    <po-widget class="po-lg-4 po-mb-1" p-title="Score">
+      <div class="po-font-subtitle po-text-center">0</div>
+    </po-widget>
+  </div>
+
+  <h2 class="po-mb-2">Inspections</h2>
+  <po-list-view
+  p-property-title="name"
+  [p-items]="[
+    { name: 'Inspection 1', activist: 'Inspector 1', inspectionResult:' Result from inspection'  },
+    { name: 'Inspection 2', activist: 'Inspector 2', inspectionResult:' Result from inspection'  },
+    { name: 'Inspection 3', activist: 'Inspector 3', inspectionResult:' Result from inspection' }
+  ]"
+>
+  <ng-template p-list-view-content-template let-item>
+    <div class="po-row">
+      <po-info class="po-md-12" p-label="Inspector details" [p-value]="item.activist"></po-info>
+    </div>
+
+    <div class="po-row">
+      <po-info class="po-md-12" p-label="Inspection Result" [p-value]="item.inspectionResult"></po-info>
+    </div>
+  </ng-template>
+</po-list-view>
+</po-container>
+
+

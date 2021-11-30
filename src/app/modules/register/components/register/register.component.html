@@ -1,0 +1,88 @@
+<po-loading-overlay *ngIf="loadingRegister" p-text="Loading">
+</po-loading-overlay>
+
+
+<po-page-default
+p-title="Register"
+[p-breadcrumb]="breadcrumb"
+
+>
+
+
+
+<po-container class="po-lg-12">
+  <form [formGroup]="registerForm">
+
+      <div class="po-row">
+
+        <po-select class="po-md-6" formControlName="personaType"
+        (p-change)="selectType($event)"
+        name="select"
+        p-label="On this screen you will select if you are a producer (the one who carries out the agriculture) or if you are an activist (the one who will carry out the inspections)"
+        [p-options]="[
+          { label: 'Producer', value: 'PRODUCER' },
+          { label: 'Activist', value: 'ACTIVIST' }
+        ]"
+      >
+      <div class="po-md-6">
+
+      </div>
+      </po-select>
+      </div>
+
+      <div class="po-row" style="display: flex;" *ngIf="personaType" >
+        <po-input name="input" p-label="Type Your Zip Code" class="po-md-3" [(ngModel)]="inputCEP" [ngModelOptions]="{standalone: true}"
+        [p-mask]="mask"> </po-input>
+        <po-button   p-icon="po-icon-search" class="po-md-1" style="margin-top: auto;margin-bottom: 8px;" (click)="searchCEP()" > </po-button>
+      </div>
+
+      <ng-container *ngIf="cepReturn">
+        <div class="po-row">
+          <po-input class="po-md-12" formControlName="name" p-clean p-icon="po-icon-user" p-label="Name"> </po-input>
+        </div>
+        <div class="po-row">
+
+
+          <po-select class="po-md-6" formControlName="document_type"
+
+          name="select"
+          p-label="Select the type of document entered."
+          [p-options]="[
+            { label: 'RG', value: 'RG' },
+            { label: 'CPF', value: 'CPF' }
+          ]"
+        >
+
+        </po-select>
+
+        <po-input class="po-md-6" p-label="Document" formControlName="document"
+        > </po-input>
+
+        </div>
+
+       <div class="po-row">
+        <po-input class="po-md-6" p-label="State" formControlName="state" p-disabled='true'> </po-input>
+        <po-input class="po-md-6" p-label="City" formControlName="city" p-disabled='true'> </po-input>
+       </div>
+
+       <div class="po-row">
+        <po-input class="po-md-6" p-label="Country" formControlName="country" p-disabled='true'
+       > </po-input>
+       </div>
+       <div class="po-row">
+        <po-button
+        class="po-md-3"
+        p-label="Cadastrar"
+        [p-disabled]="registerForm.invalid"
+        (p-click)="saveForm()"
+      >
+      </po-button>
+       </div>
+      </ng-container>
+
+
+
+
+</form>
+</po-container>
+</po-page-default>

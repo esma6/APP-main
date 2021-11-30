@@ -1,0 +1,134 @@
+<po-loading-overlay *ngIf="loadingCertificate" p-text="Carregando">
+</po-loading-overlay>
+
+<po-page-default
+  *ngIf="accountDetails"
+  [p-title]="accountRole + ' Account'"
+  [p-breadcrumb]="breadcrumb"
+><div>
+
+    <po-container class="po-lg-10 po-xl-10 po-offset-lg-1 po-offset-xl-1 mb-2" >
+      <div id="Certificate" #Certificate style="background-color: white;">
+
+
+      <h4 class='po-ml-1'><b>{{ accountRole == 'Producer'? 'PRODUCER':'ACTIVIST'}}:</b></h4>
+      <div class="po-row">
+        <po-info class="po-lg-6" p-label="Name" [p-value]="accountDetails.name">
+        </po-info>
+        <div class="po-lg-6">
+          <po-info
+            p-label="Address"
+            class="col-lg-12"
+            [p-value]="
+              accountRole == 'Producer'? accountDetails.property_address.city +
+                  ' - ' +
+                  accountDetails.property_address.state +
+                  ', ' +
+                  accountDetails.property_address.country
+                : accountDetails.activistAddress.city +
+                  ' - ' +
+                  accountDetails.activistAddress.state +
+                  ', ' +
+                  accountDetails.activistAddress.country"
+          >
+          </po-info>
+
+          <po-info
+            class="col-lg-12"
+            [p-value]="
+              accountRole == 'Producer'
+                ? 'Zip Code: ' + accountDetails.property_address.cep
+                : 'Zip Code: ' + accountDetails.activistAddress.cep
+            "
+          ></po-info>
+        </div>
+      </div>
+      <hr>
+      <div >
+        <h4 class='po-ml-1'><b>CERTIFICATE:</b></h4>
+        <div class="po-row">
+          <div class="po-lg-4 po-xl-4 po-offset-lg-1 po-offset-xl-1">
+            <ngx-qrcode
+              [width]="250"
+              [elementType]="elementType"
+              [value]="value"
+              cssClass="aclass"
+            >
+            </ngx-qrcode>
+            <h6>{{this.accountWallet}}</h6>
+          </div>
+          <div class="po-lg-6 po-xl-6 po-offset-lg-1 po-offset-xl-1">
+            <img
+              src="../../../../assets/img/262543420-sintrop-logo-com-degrade.png"
+              alt="sintropLogo"
+              width="200px"
+              class="mb-3"
+            />
+
+
+            <div style="margin-top: 20px">
+              <div class="po-row">
+
+                <h4 class="po-lg-7"
+                  style="
+                    border: 1px solid black;
+                    border-radius: 5px;
+                    padding: 2px;
+                  "
+                >
+                  <b>Sustainability Score: <span>10</span></b>
+                </h4>
+              </div>
+
+              <div class="po-row" style="margin-top: 20px">
+                <h4   class="po-lg-7"
+                  style="
+                    border: 1px solid black;
+                    border-radius: 5px;
+                    padding: 2px;
+                  "
+                >
+                  <b>Inspections Received: <span>{{accountDetails.totalInspections}}</span></b>
+                </h4>
+              </div>
+              <div class="po-row" style="margin-top: 20px">
+                <h4 class="po-lg-7"
+                  style="
+                    border: 1px solid black;
+                    border-radius: 5px;
+                    padding: 2px;
+                  "
+                >
+                  <b> <span style="color: red"> Delations Received: 2</span></b>
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="po-row po-mt-4" >
+
+      <div class="  po-ml-2 po-col-3">
+        <po-button p-label="Copy URL" (p-click)="copyUrl()"> </po-button>
+      </div>
+
+        <div class="po-ml-4">
+          <po-button p-label="Download Image" (p-click)="saveImage()"> </po-button>
+        </div>
+
+        <div class="po-ml-4">
+          <po-button p-label="Receive by E-mail" (p-click)="sendCertificateByEmail()"> </po-button>
+        </div>
+
+    </div>
+    </po-container>
+
+
+</div>
+
+
+
+
+</po-page-default>

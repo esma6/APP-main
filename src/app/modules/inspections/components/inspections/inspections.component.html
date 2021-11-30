@@ -1,0 +1,44 @@
+<po-loading-overlay *ngIf="loadingInspections" p-text="Loading">
+</po-loading-overlay>
+
+<po-page-default
+p-title="Inspections"
+  [p-breadcrumb]="breadcrumb"
+  [p-actions]="actions"
+>
+
+
+<po-container class="po-lg-12">
+  <po-table
+    [p-auto-collapse]="true"
+    [p-hide-detail]="false"
+    [p-sort]="true"
+    [p-striped]="true"
+    [p-columns]="columns"
+    [p-items]="items"
+    [p-actions]="TableActions"
+    (p-collapsed)="onCollapseDetail()"
+    (p-expanded)="onExpandDetail()"
+  >
+  </po-table>
+</po-container>
+
+</po-page-default>
+
+
+<po-modal #inspectModal   p-title="Request Inspection"
+[p-primary-action]="requestInspectionAction"
+  [p-secondary-action]="inspectCancelAction"
+  p-size="sm">
+
+  <h2>Would you like to request a Inspection?</h2>
+</po-modal>
+
+<po-modal #acceptInspectModal   p-title="
+Choose Inspection"
+[p-primary-action]="acceptInspectionAction"
+  [p-secondary-action]="acceptInspectCancelAction"
+  p-size="sm">
+
+  <h2>Would you like to accept this Inspection?</h2>
+</po-modal>

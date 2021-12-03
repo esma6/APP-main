@@ -76,6 +76,8 @@ export class DashboardLayoutComponent implements OnInit {
 @ViewChild('iconTemplate4', { static: true } ) iconTemplate4 : TemplateRef<void> | undefined;
 @ViewChild('iconTemplate5', { static: true } ) iconTemplate5 : TemplateRef<void> | undefined;
 @ViewChild('iconTemplate6', { static: true } ) iconTemplate6 : TemplateRef<void> | undefined;
+@ViewChild('iconTemplate7', { static: true } ) iconTemplate7 : TemplateRef<void> | undefined;
+@ViewChild('iconTemplate8', { static: true } ) iconTemplate8 : TemplateRef<void> | undefined;
 
   ngOnInit(): void {
     this.menus[0].icon = this.iconTemplate
@@ -85,6 +87,8 @@ export class DashboardLayoutComponent implements OnInit {
     this.menus[4].icon = this.iconTemplate4
     this.menus[5].icon = this.iconTemplate5
     this.menus[6].icon = this.iconTemplate6
+    this.menus[7].icon = this.iconTemplate7
+    this.menus[8].icon = this.iconTemplate8
 
     if (this.web3.account && this.web3.account[0]) {
       this.accountNumber = this.web3.account[0];
@@ -108,7 +112,7 @@ export class DashboardLayoutComponent implements OnInit {
       shortLabel: 'Inspections',
     },
     {
-      label: 'Inspection',
+      label: 'Accepted Inspection',
       action: this.printMenuAction.bind(this),
       icon: 'po-icon-user',
       shortLabel: 'Inspection',
@@ -139,6 +143,38 @@ export class DashboardLayoutComponent implements OnInit {
       shortLabel: 'Certificate',
     },
 
+    {
+      label: 'Producer Pool',
+      action: this.printMenuAction.bind(this),
+      icon: 'po-icon-user',
+      shortLabel: 'Producer Pool',
+    },
+
+
+    {
+      label: 'Activist Pool',
+      action: this.printMenuAction.bind(this),
+      icon: 'po-icon-user',
+      shortLabel: 'Activist Pool',
+    },
+
+
+    {
+      label: 'Dev Pool',
+      action: this.printMenuAction.bind(this),
+      icon: 'po-icon-user',
+      shortLabel: 'Dev Pool',
+    },
+
+
+    {
+      label: 'Researcher Pool',
+      action: this.printMenuAction.bind(this),
+      icon: 'po-icon-user',
+      shortLabel: 'Researcher Pool',
+    },
+
+
   ];
 
   /*  {
@@ -158,10 +194,10 @@ export class DashboardLayoutComponent implements OnInit {
       this.router.navigate(['dashboard/'])
     }
     if (menu.shortLabel == 'Inspections') {
-      this.router.navigate(['dashboard/inspections'])
+      this.router.navigate(['dashboard/new-inspection'])
     }
     if (menu.shortLabel == 'Inspection') {
-      this.router.navigate(['dashboard/inspection'])
+      this.router.navigate(['dashboard/realize-inspection'])
     }
     if (menu.shortLabel == 'Producers') {
       this.router.navigate(['dashboard/producer-ranking'])
@@ -175,6 +211,19 @@ export class DashboardLayoutComponent implements OnInit {
 
     if (menu.shortLabel == 'Certificate') {
       this.router.navigate([`dashboard/certificate/${this.accountNumber}`])
+    }
+    if (menu.shortLabel == 'Producer Pool') {
+      this.router.navigate([`dashboard/producer-pool/${this.accountNumber}`])
+    }
+
+    if (menu.shortLabel == 'Activist Pool') {
+      this.router.navigate([`dashboard/activist-pool/${this.accountNumber}`])
+    }
+    if (menu.shortLabel == 'Dev Pool') {
+      this.router.navigate([`dashboard/developers-pool/${this.accountNumber}`])
+    }
+    if (menu.shortLabel == 'Researcher Pool') {
+      this.router.navigate([`dashboard/researcher-pool/${this.accountNumber}`])
     }
 
   }

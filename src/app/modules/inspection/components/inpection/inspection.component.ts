@@ -39,7 +39,6 @@ export class InspectionComponent implements OnInit {
       action: this.realizeInspectionModalShow.bind(this),
       icon: 'po-icon-warning',
       label: 'Realize',
-
     },
   ];
   inspectionArray: any;
@@ -108,45 +107,66 @@ export class InspectionComponent implements OnInit {
   public async getInspections() {
     this.loadingInspection = true;
     this.checkAccount().then(async (res) => {
-
       console.log(res);
       if (res) {
-        this.web3.getInspections().then((res) => {
-          console.log(res);
+   /*     this.web3.getInspectionsHistory().then((res) => {
           this.items = [];
           this.inspectionArray = res;
+          console.log(res)
 
-          for (let i = 0; i < this.inspectionArray.length; i++) {
-            let initialChars = this.inspectionArray[i]['producerWallet'];
-
-            let createdBy = `${initialChars.substring(
+          this.items = res.map((item: any) =>
+          Object.assign({}, item, {
+            createdBy: `${item.producerWallet.substring(
               0,
               5
-            )}...${initialChars.substring(
-              initialChars.length - 5,
-              initialChars.length
-            )}`;
+            )}...${item.producerWallet.substring(
+              item.producerWallet.length - 5,
+              item.producerWallet.length
+            )}`,
+            created_at: new Date(item.createdAt * 1000),
+            expiresIn: new Date(item.expiresIn * 1000),
+            status: Status[item.status],
+            id: item.id,
+            prodId: item.producerWallet,
+            statusEnum: item.status,
+            dateTimeUnix: item.createdAt,
+          })
+        );
 
-            this.items.push({
-              createdBy: createdBy,
-              created_at: new Date(
-                this.inspectionArray[i]['createdAt'] * 1000
-              ),
-              expiresIn: new Date(
-                this.inspectionArray[i]['expiresIn'] * 1000
-              ),
-              status: Status[this.inspectionArray[i]['status']],
-              id: this.inspectionArray[i]['id'],
-              prodId: this.inspectionArray[i]['producerWallet'],
-              statusEnum: this.inspectionArray[i]['status'],
-              dateTimeUnix: this.inspectionArray[i]['createdAt'],
-            });
-          }
+          setTimeout(() => {
+            this.loadingInspection = false;
+          }, 200);
+        });*/
+
+        this.web3.getInspections().then((res) => {
+          this.items = [];
+          this.inspectionArray = res;
+          console.log(res)
+
+          this.items = res.map((item: any) =>
+          Object.assign({}, item, {
+            createdBy: `${item.producerWallet.substring(
+              0,
+              5
+            )}...${item.producerWallet.substring(
+              item.producerWallet.length - 5,
+              item.producerWallet.length
+            )}`,
+            created_at: new Date(item.createdAt * 1000),
+            expiresIn: new Date(item.expiresIn * 1000),
+            status: Status[item.status],
+            id: item.id,
+            prodId: item.producerWallet,
+            statusEnum: item.status,
+            dateTimeUnix: item.createdAt,
+          })
+        );
 
           setTimeout(() => {
             this.loadingInspection = false;
           }, 200);
         });
+
       } else {
         setTimeout(() => {
           this.loadingInspection = false;
@@ -159,23 +179,23 @@ export class InspectionComponent implements OnInit {
     console.log(inspection);
 
     if (inspection.statusEnum != '3') {
-      this.poNotification.error({message:'This Inspection is unavailablet to realize!',duration:5000})
-    }
-    else{
-
-
-      if ( this.web3.accDetails && this.web3.accDetails?.role == "PRODUCER") {
+      this.poNotification.error({
+        message: 'This Inspection is unavailablet to realize!',
+        duration: 5000,
+      });
+    } else {
+      if (this.web3.accDetails && this.web3.accDetails?.role == 'PRODUCER') {
         this.poNotification.error({
-          message: 'The account must be from a Activist to accept the Inspection',
-          duration:5000
-        })
-
+          message:
+            'The account must be from a Activist to accept the Inspection',
+          duration: 5000,
+        });
       } else {
         this.selectedInspection.inspectionId = inspection.id;
 
-        this.web3.getInspection(this.selectedInspection).then((res)=>{
-          console.log(res)
-        })
+        this.web3.getInspection(this.selectedInspection).then((res) => {
+          console.log(res);
+        });
 
         this.web3.getCategories().then((res) => {
           console.log(res);
@@ -194,10 +214,7 @@ export class InspectionComponent implements OnInit {
           this.realizeInspectModal.open();
         });
       }
-
     }
-
-
   }
 
   selectISA(isaId: any, item: any) {
@@ -205,22 +222,20 @@ export class InspectionComponent implements OnInit {
     this.selectedInspection.isa[categorieId] = [item.id, isaId];
 
     console.log(this.selectedInspection);
-    let arrayValidator = 2* this.selectedInspection.isa.length;
+    let arrayValidator = 2 * this.selectedInspection.isa.length;
     let arrayValidatorLength = 0;
 
     for (let i = 0; i < this.selectedInspection.isa.length; i++) {
-
       if (this.selectedInspection.isa[i].length == 2) {
-        arrayValidatorLength += 2
+        arrayValidatorLength += 2;
       }
-
     }
 
     if (arrayValidatorLength >= arrayValidator) {
       this.finishButtonDisabled = false;
     }
 
-console.log(arrayValidatorLength, arrayValidator)
+    console.log(arrayValidatorLength, arrayValidator);
     console.log(isaId);
     console.log(item);
   }
@@ -230,29 +245,33 @@ console.log(arrayValidatorLength, arrayValidator)
   }
 
   realizeInspection() {
-
     if (this.finishButtonDisabled) {
-      this.poNotification.error({ message: 'Select the Isa of all categories', duration: 3000 })
-    }else{
+      this.poNotification.error({
+        message: 'Select the Isa of all categories',
+        duration: 3000,
+      });
+    } else {
       this.realizeInspectModal.close();
       this.loadingInspection = true;
       console.log('Inspection finished');
-      console.log(this.selectedInspection)
-      this.web3.realizeInspection(this.selectedInspection).then((res)=>{
-        console.log(res)
-        this.loadingInspection = false;
-        this.poNotification.success({
-          message:'Inpection realized with success',
-          duration: 5000
-        })
-      },(err)=>{
-        this.loadingInspection = false;
-        this.poNotification.error({
-          message:'Inpection realized error' + err.message,
-          duration: 5000
-        })
-      })
-
+      console.log(this.selectedInspection);
+      this.web3.realizeInspection(this.selectedInspection).then(
+        (res) => {
+          console.log(res);
+          this.loadingInspection = false;
+          this.poNotification.success({
+            message: 'Inpection realized with success',
+            duration: 5000,
+          });
+        },
+        (err) => {
+          this.loadingInspection = false;
+          this.poNotification.error({
+            message: 'Inpection realized error' + err.message,
+            duration: 5000,
+          });
+        }
+      );
     }
   }
 }

@@ -76,9 +76,7 @@ export class Web3Service {
     }
   }
 
-
-
-  async getUser(){
+  async getUser() {
     const user = await this.sintropContract.methods
       .getUser(this.account[0])
       .call()
@@ -87,7 +85,6 @@ export class Web3Service {
       });
 
     return user;
-
   }
 
   async getCategories() {
@@ -154,9 +151,13 @@ export class Web3Service {
     return categoriesCount;
   }
 
-  async getProducer() {
+  async getProducer(walletAcc?: any) {
+    let accountWallet = this.account[0];
+    if (walletAcc) {
+      accountWallet = walletAcc;
+    }
     const producer = await this.sintropContract.methods
-      .getProducer(this.account[0])
+      .getProducer(accountWallet)
       .call()
       .then((e: any) => {
         if (e) {
@@ -169,9 +170,13 @@ export class Web3Service {
     return producer;
   }
 
-  async getActivist() {
+  async getActivist(walletAcc?: any) {
+    let accountWallet = this.account[0];
+    if (walletAcc) {
+      accountWallet = walletAcc;
+    }
     const activist = await this.sintropContract.methods
-      .getActivist(this.account[0])
+      .getActivist(accountWallet)
       .call()
       .then((e: any) => {
         if (e) {
@@ -196,8 +201,7 @@ export class Web3Service {
   }
 
   async addProducer(producer: any) {
-
-    console.log(producer)
+    console.log(producer);
 
     return await this.sintropContract.methods
 
@@ -246,26 +250,30 @@ export class Web3Service {
       .getInspections()
       .call()
       .then((e: any) => {
-        console.log(e)
+        console.log(e);
         return e;
       });
 
     return inspections;
   }
 
-  public async acceptInspection(id:any) {
+  public async acceptInspection(id: any) {
     return await this.sintropContract.methods
       .acceptInspection(id)
       .send({ from: this.account[0] })
-      .on('transactionHash', (hash: any) => {
-        if (hash) {
-          return hash;
-        } else {
-          return false;
+      .on(
+        'transactionHash',
+        (hash: any) => {
+          if (hash) {
+            return hash;
+          } else {
+            return false;
+          }
+        },
+        (err: any) => {
+          console.log(err);
         }
-      },(err:any)=>{
-        console.log(err)
-      });
+      );
   }
 
   public async requestInspection() {
@@ -281,60 +289,70 @@ export class Web3Service {
       });
   }
 
-  public async realizeInspection(inspection:any){
-
+  public async realizeInspection(inspection: any) {
     return await this.sintropContract.methods
-    .realizeInspection(inspection.inspectionId,inspection.isa)
-    .send({ from: this.account[0] })
-    .on('transactionHash', (hash: any) => {
-      if (hash) {
-        return hash;
-      } else {
-        return false;
-      }
-    },(err:any)=>{
-      console.log(err)
-    });
+      .realizeInspection(inspection.inspectionId, inspection.isa)
+      .send({ from: this.account[0] })
+      .on(
+        'transactionHash',
+        (hash: any) => {
+          if (hash) {
+            return hash;
+          } else {
+            return false;
+          }
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
   }
 
-
-  public async getInspection(inspection:any){
+  public async getInspection(inspection: any) {
     const activists = await this.sintropContract.methods
-    .getInspection(inspection.inspectionId)
-    .call()
-    .then((e: any) => {
-      console.log(e)
-      return e;
-    });
+      .getInspection(inspection.inspectionId)
+      .call()
+      .then((e: any) => {
+        console.log(e);
+        return e;
+      });
 
-  return activists;
+    return activists;
   }
 
-
-
-  public async getActivists(){
+  public async getActivists() {
     const activists = await this.sintropContract.methods
-    .getActivists()
-    .call()
-    .then((e: any) => {
-      console.log(e)
-      return e;
-    });
+      .getActivists()
+      .call()
+      .then((e: any) => {
+        console.log(e);
+        return e;
+      });
 
-  return activists;
+    return activists;
   }
 
-  public async getProducers(){
+  public async getProducers() {
     const producers = await this.sintropContract.methods
-    .getProducers()
-    .call()
-    .then((e: any) => {
-      console.log(e)
-      return e;
-    });
+      .getProducers()
+      .call()
+      .then((e: any) => {
+        console.log(e);
+        return e;
+      });
 
-  return producers;
+    return producers;
   }
 
+  public async getInspectionsHistory() {
+    const inspections = await this.sintropContract.methods
+      .getInspectionsHistory()
+      .call()
+      .then((e: any) => {
+        console.log(e);
+        return e;
+      });
 
+    return inspections;
+  }
 }

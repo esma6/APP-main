@@ -39,14 +39,14 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'inspections',
+        path: 'new-inspection',
         loadChildren: () =>
           import('./modules/inspections/inspections.module').then(
             (m) => m.InspectionsModule
           ),
       },
       {
-        path: 'inspection',
+        path: 'realize-inspection',
         loadChildren: () =>
           import('./modules/inspection/inspection.module').then(
             (m) => m.InspectionModule
@@ -81,6 +81,36 @@ const routes: Routes = [
           ),
       },
 
+      {
+        path: 'producer-pool/:id',
+        loadChildren: () =>
+          import('./modules/producerPool/producerPool.module').then(
+            (m) => m.ProducerPoolModule
+          ),
+      },
+      {
+        path: 'activist-pool/:id',
+        loadChildren: () =>
+          import('./modules/activistPool/activistPool.module').then(
+            (m) => m.ActivistPoolModule
+          ),
+      },
+
+      {
+        path: 'developers-pool/:id',
+        loadChildren: () =>
+          import('./modules/devPool/devPool.module').then(
+            (m) => m.DevPoolModule
+          ),
+      },
+
+      {
+        path: 'researcher-pool/:id',
+        loadChildren: () =>
+          import('./modules/researcherPool/researcherPool.module').then(
+            (m) => m.ResearcherPoolModule
+          ),
+      },
     ],
   },
 

@@ -137,14 +137,14 @@ export class RegisterComponent implements OnInit {
         console.log(res);
         this.loadingRegister = false;
         this.notificationAlertSuccess('Registration performed successfully');
-        this.router.navigate(['dashboard/inspections'])
+        this.router.navigate(['dashboard/new-inspection'])
       });
     } else {
       this.web3.addActivist(this.registerForm.value).then((res) => {
         console.log(res);
         this.loadingRegister = false;
         this.notificationAlertSuccess('Registration performed successfully');
-        this.router.navigate(['dashboard/inspections'])
+        this.router.navigate(['dashboard/new-inspection'])
       });
     }
   }

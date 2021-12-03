@@ -1,0 +1,101 @@
+<po-loading-overlay *ngIf="loadingActivistPool" p-text="Carregando">
+</po-loading-overlay>
+
+<po-page-default
+  *ngIf="accountDetails"
+  [p-title]="'Activist Pool'"
+  [p-breadcrumb]="breadcrumb"
+>
+  <po-container>
+    <div class="po-row">
+      <div class="po-row po-mt-2">
+        <po-widget class="po-lg-4 po-mb-1" p-title="TOTAL SAT">
+          <div class="po-font-subtitle po-text-center">0</div>
+          <div class="po-text-center">Total earned</div>
+        </po-widget>
+
+        <po-widget
+          class="po-lg-4 po-mb-1"
+          p-title="TOTAL SAT"
+          [p-primary]="true"
+        >
+          <div class="po-font-subtitle po-text-center">0</div>
+          <div class="po-text-center">Pending</div>
+        </po-widget>
+
+        <po-widget class="po-lg-4 po-mb-1" p-title="TOTAL SAT">
+          <div class="po-font-subtitle po-text-center">0</div>
+          <div class="po-text-center">Tokens Cleared</div>
+        </po-widget>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="po-row">
+      <po-container
+        class="
+          po-lg-6 po-xl-6 po-md-6 po-offset-xl-3 po-offset-md-3 po-offset-lg-3
+        "
+      >
+        <h2 class="po-mb-2">Activist Pool</h2>
+        <po-info
+          p-label="Total pool SAT"
+          class="col-lg-12"
+          p-value="100.000.000.00"
+        >
+        </po-info>
+        <br />
+        <po-info
+          p-label="Reward per block"
+          class="col-lg-12 po-mb-2"
+          p-value="100"
+        >
+        </po-info>
+        <br />
+        <po-info p-label="Number of Activists" class="col-lg-12" p-value="50">
+        </po-info>
+        <br />
+        <po-info
+          p-label="Average Sustenainability Score"
+          class="col-lg-12"
+          p-value="10"
+        >
+        </po-info>
+        <br />
+        <po-info p-label="Your Earning" class="col-lg-12 color" p-value="100">
+        </po-info>
+
+        <div class="po-row po-mt-2">
+          <div class="po-col-4 po-offset-xl-4 po-offset-md-4 po-offset-lg-4">
+            <po-button p-label="Call" p-type="primary"> </po-button>
+          </div>
+
+          <div class="po-ml-5 po-col-4">
+            <po-button p-label="Withdraw" p-type="primary"> </po-button>
+          </div>
+        </div>
+      </po-container>
+    </div>
+
+    <hr />
+
+    <h2>History of inspections</h2>
+    <po-list-view
+      p-property-title="name"
+      [p-items]="[
+        { name: 'User 1', userWallet: '0XB918E0A26A3365B97E3A7F751307CA6F0D23E324' },
+        { name: 'User 2', userWallet: '0XB918E0A26A3365B97E3A7F751307CA6F0D23E324' }
+      ]"
+    >
+      <ng-template p-list-view-content-template let-item>
+        <div class="po-row">
+          <po-info
+            class="po-md-12"
+            p-label="User Wallet"
+            [p-value]="item.userWallet"
+          ></po-info>
+        </div>
+      </ng-template>
+    </po-list-view> </po-container
+></po-page-default>

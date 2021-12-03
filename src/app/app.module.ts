@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PoModule } from '@po-ui/ng-components';
 import { RouterModule } from '@angular/router';
-import { CertificateComponent } from './modules/pubcertificate/components/certificate/certificate.component';
 
 @NgModule({
   declarations: [

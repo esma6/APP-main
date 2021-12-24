@@ -9,23 +9,22 @@
   <po-container>
     <div class="po-row">
       <div class="po-row po-mt-2">
-        <po-widget class="po-lg-4 po-mb-1" p-title="TOTAL SAT">
+        <po-widget class="po-lg-4 po-mb-1" p-title="Withdrawn Amount">
           <div class="po-font-subtitle po-text-center">0</div>
-          <div class="po-text-center">Total earned</div>
+      <!--  <div class="po-text-center">Withdrawn Amount</div>-->
         </po-widget>
 
         <po-widget
           class="po-lg-4 po-mb-1"
-          p-title="TOTAL SAT"
+          p-title="Available To Withdrawn"
           [p-primary]="true"
         >
-          <div class="po-font-subtitle po-text-center">0</div>
-          <div class="po-text-center">Pending</div>
+          <div class="po-font-subtitle po-text-center">{{accountDetails.tokenApprove.allowed}}</div>
+
         </po-widget>
 
-        <po-widget class="po-lg-4 po-mb-1" p-title="TOTAL SAT">
-          <div class="po-font-subtitle po-text-center">0</div>
-          <div class="po-text-center">Tokens Cleared</div>
+        <po-widget class="po-lg-4 po-mb-1" p-title="Tokens Earned">
+          <div class="po-font-subtitle po-text-center">{{balanceOfValue}}</div>
         </po-widget>
       </div>
     </div>
@@ -42,14 +41,14 @@
         <po-info
           p-label="Total pool SAT"
           class="col-lg-12"
-          p-value="100.000.000.00"
+          [p-value]= totalSat
         >
         </po-info>
         <br />
         <po-info
           p-label="Reward per block"
           class="col-lg-12 po-mb-2"
-          p-value="100"
+          p-value="2000"
         >
         </po-info>
         <br />
@@ -59,20 +58,20 @@
         <po-info
           p-label="Average Sustenainability Score"
           class="col-lg-12"
-          p-value="10"
+          [p-value]=accountDetails?.isaPoints
         >
         </po-info>
         <br />
-        <po-info p-label="Your Earning" class="col-lg-12 color" p-value="100">
+        <po-info p-label="Your Earning" class="col-lg-12 color" [p-value]=accountDetails?.tokenApprove.allowed>
         </po-info>
 
         <div class="po-row po-mt-2">
           <div class="po-col-4 po-offset-xl-4 po-offset-md-4 po-offset-lg-4">
-            <po-button p-label="Call" p-type="primary"> </po-button>
+            <po-button p-label="Call" p-type="primary" (click)="aprove()" > </po-button>
           </div>
 
           <div class="po-ml-5 po-col-4">
-            <po-button p-label="Withdraw" p-type="primary"> </po-button>
+            <po-button p-label="Withdraw" p-type="primary" (click)="withdraw()" > </po-button>
           </div>
         </div>
       </po-container>

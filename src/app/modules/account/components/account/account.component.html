@@ -11,8 +11,25 @@
       <po-avatar class="po-md-2" p-src="http://lorempixel.com.br/140/140/?4">
       </po-avatar>
 
-      <po-info class="po-lg-5" p-label="Name" [p-value]="accountDetails.name">
-      </po-info>
+      <div class="po-lg-5">
+        <po-info
+          class="col-lg-12"
+          p-label="Name"
+          [p-value]="accountDetails.name"
+        >
+        </po-info>
+
+        <po-info
+          class="col-lg-12"
+          p-label="Wallet"
+          [p-value]="
+            accountRole == 'Producer'
+              ? accountDetails.producer_wallet
+              : accountDetails.activistWallet
+          "
+        >
+        </po-info>
+      </div>
 
       <div class="po-lg-5">
         <po-info
@@ -57,22 +74,26 @@
       </po-widget>
 
       <po-widget class="po-lg-4 po-mb-1" p-title="Isa" [p-primary]="true">
-        <div class="po-font-subtitle po-text-center">0</div>
+        <div class="po-font-subtitle po-text-center">
+          {{ accountDetails.isaPoints }}
+        </div>
       </po-widget>
 
-      <po-widget class="po-lg-4 po-mb-1" p-title="Score">
-        <div class="po-font-subtitle po-text-center">0</div>
+      <po-widget class="po-lg-4 po-mb-1" p-title="Tokens Earned">
+        <div class="po-font-subtitle po-text-center">{{     accountRole == 'Producer'
+          ? accountDetails.tokenApprove.allowed + ' SAT'
+          : 0}}</div>
       </po-widget>
     </div>
 
-    <h2 class="po-mb-2">Inspections</h2>
+    <h2 class="po-mb-2">Inspection History</h2>
     <po-list-view
       p-property-title="name"
       [p-items]="inspections"
       [p-actions]="actions"
     >
       <ng-template p-list-view-content-template let-item>
-        <div class="po-row">
+        <div class="po-row po-mb-3">
           <div class="po-md-6">
             <div class="po-row">
               <po-info
@@ -90,19 +111,34 @@
             </div>
           </div>
           <po-info
-            class="po-md-6"
+            class="po-md-2"
             p-label="Created At"
             [p-value]="item.date"
           ></po-info>
+
+          <po-info
+          [p-orientation]="orientation"
+          class="po-md-2"
+          p-label="Inspection Isa Average"
+          [p-value]="item.isaPoints"
+        ></po-info>
         </div>
 
-        <div class="po-row">
-          <po-info
-            class="po-md-12"
-            p-label="Inspection Isa Average"
-            [p-value]="item.isaAverage"
-          ></po-info>
-        </div>
+
+
+
+        <ng-container  *ngFor="let result of item.result" >
+          <div class="po-row ">
+            <po-info
+            [p-orientation]="orientation"
+              class="po-md-12"
+              p-label="Result of Inspection {{result.categorie.name}}"
+              [p-value]="result.value"
+            ></po-info>
+          </div>
+        </ng-container>
+
+
       </ng-template>
     </po-list-view>
   </po-container>
@@ -118,42 +154,37 @@
       <po-info
         class="po-md-12"
         [p-label]="
-          accountRole == 'Producer' ?'Activist Name' :'Producer Name'
+          accountRole == 'Producer' ? 'Activist Name' : 'Producer Name'
         "
         [p-value]="inpectionAccount?.name"
       >
       </po-info>
 
       <po-info
-      class="po-md-12"
-      p-label="Address"
-      [p-value]="
-      accountRole == 'Producer'
-        ? inpectionAccount?.activistAddress.city +
-          ' - ' +
-          inpectionAccount?.activistAddress.state +
-          ', ' +
-          inpectionAccount?.activistAddress.country
-        : inpectionAccount?.property_address.city +
-          ' - ' +
-          inpectionAccount?.property_address?.state +
-          ', ' +
-          inpectionAccount?.property_address?.country
-    "
-    >
-    </po-info>
-    <p  class="po-md-12">{{accountRole == 'Producer'
-      ? inpectionAccount?.activistAddress.cep:inpectionAccount?.property_address.cep}}</p>
-
-
+        class="po-md-12"
+        p-label="Address"
+        [p-value]="
+          accountRole == 'Producer'
+            ? inpectionAccount?.activistAddress.city +
+              ' - ' +
+              inpectionAccount?.activistAddress.state +
+              ', ' +
+              inpectionAccount?.activistAddress.country
+            : inpectionAccount?.property_address.city +
+              ' - ' +
+              inpectionAccount?.property_address?.state +
+              ', ' +
+              inpectionAccount?.property_address?.country
+        "
+      >
+      </po-info>
+      <p class="po-md-12">
+        {{
+          accountRole == "Producer"
+            ? inpectionAccount?.activistAddress.cep
+            : inpectionAccount?.property_address.cep
+        }}
+      </p>
     </div>
   </po-modal>
-
-  <!--
-  [
-    { name: 'Inspection 1', activist: 'Inspector 1', inspectionResult:' Result from inspection'  },
-    { name: 'Inspection 2', activist: 'Inspector 2', inspectionResult:' Result from inspection'  },
-    { name: 'Inspection 3', activist: 'Inspector 3', inspectionResult:' Result from inspection' }
-  ]
--->
 </po-page-default>

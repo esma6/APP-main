@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   PoBreadcrumb,
+  PoInfoOrientation,
   PoListViewAction,
   PoModalAction,
   PoModalComponent,
@@ -20,7 +21,6 @@ export class AccountComponent implements OnInit {
   @ViewChild('widget', { static: true }) widgetElement!: PoWidgetComponent;
   @ViewChild('inspectionModal') inspectionModal!: PoModalComponent;
 
-
   accountWallet!: string | null;
   public loadingAccount: boolean = false;
 
@@ -31,6 +31,14 @@ export class AccountComponent implements OnInit {
   accountRole!: string;
 
   inspections: any;
+  orientation:PoInfoOrientation = PoInfoOrientation.Horizontal
+  IsaStatus = [
+    'Totally Sustainable',
+    'Partially Sustainable',
+    'Neutro',
+    'Partially Not Sustainable',
+    'Totally Not Sustainable',
+  ];
 
   readonly actions: Array<PoListViewAction> = [
     {
@@ -40,6 +48,7 @@ export class AccountComponent implements OnInit {
     },
   ];
   inpectionAccount: any;
+  categories: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -69,6 +78,7 @@ export class AccountComponent implements OnInit {
       this.inspections = [];
       if (acc) {
         this.web3.getUser().then((res) => {
+          this.getCategories();
           console.log(res);
 
           switch (res) {
@@ -83,17 +93,7 @@ export class AccountComponent implements OnInit {
                 console.log(res);
                 this.accountDetails = res;
                 this.loadingAccount = false;
-
-                this.web3.getInspectionsHistory().then((res) => {
-                  this.inspections = res.map((item: any) =>
-                    Object.assign({}, item, {
-                      date: new Date(item.createdAt * 1000).toLocaleDateString(
-                        'pt-Br'
-                      ),
-                    })
-                  );
-                  console.log(this.inspections);
-                });
+                this.getInspectionsHistory();
               });
               break;
 
@@ -103,64 +103,45 @@ export class AccountComponent implements OnInit {
                 this.accountDetails = res;
                 this.loadingAccount = false;
 
-                this.web3.getInspectionsHistory().then((res) => {
-                  this.inspections = res.map((item: any) =>
-                    Object.assign({}, item, {
-                      date: new Date(item.createdAt * 1000).toLocaleDateString(
-                        'pt-Br'
-                      ),
-                    })
-                  );
-                  console.log(this.inspections);
-                });
+                this.getInspectionsHistory();
               });
               break;
           }
         });
-
-        /*
-       this.web3.producerExists().then((res)=>{
-          console.log( res)
-          if(!res){
-            this.web3.activistExists().then((res)=>{
-              console.log( res)
-              if(!res){
-                this.loadingAccount = false;
-                this.router.navigate(['dashboard/register'])
-              }else{
-                this.loadingAccount = false;
-                this.web3.getActivist().then(res=>{
-
-                  this.accountRole = 'Activist'
-                  this.accountDetails = res
-                })
-              }
-            })
-          }else{
-            this.loadingAccount = false;
-            this.web3.getProducer().then(res=>{
-              this.accountRole = 'Producer'
-              console.log(res)
-              this.accountDetails = res
-            })
-          }
-        })*/
       } else {
         this.loadingAccount = false;
       }
     });
   }
 
+  getInspectionsHistory() {
+    this.web3.getInspectionsHistory().then((res) => {
+      this.inspections = res.map((item: any) =>
+        Object.assign({}, item, {
+          date: new Date(item.createdAt * 1000).toLocaleDateString('pt-Br'),
+          result:[]
+        })
+      );
+
+      for (let i = 0; i < this.inspections.length; i++) {
+
+        for (let index = 0; index < this.inspections[i].isas.length; index++) {
+          this.inspections[i].result.push({
+            categorie:this.categories[this.inspections[i].isas[index][0]-1],
+            value: this.IsaStatus[this.inspections[i].isas[index][1]]
+          })
+        }
+
+      }
+console.log(this.inspections)
+    });
+  }
 
   seeDetail(inpection: any) {
     console.log(inpection);
 
-
-
     if (this.accountRole == 'Producer') {
-
       this.web3.getActivist(inpection.activistWallet).then((res) => {
-
         console.log(res);
 
         this.inpectionAccount = res;
@@ -170,18 +151,21 @@ export class AccountComponent implements OnInit {
       });
     } else {
       this.web3.getProducer(inpection.producerWallet).then((res) => {
-
         console.log(res);
 
         this.inpectionAccount = res;
-        console.log( this.inpectionAccount?.property_address.city)
+        console.log(this.inpectionAccount?.property_address.city);
 
         setTimeout(() => {
           this.inspectionModal.open();
         }, 200);
-
       });
-
     }
+  }
+
+  async getCategories() {
+    this.web3.getCategories().then((res) => {
+      this.categories = res;
+    });
   }
 }

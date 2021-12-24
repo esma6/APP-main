@@ -22,6 +22,10 @@ export class checkContractService {
         await this.web3.loadAbisContract();
       }
 
+      if (!this.web3.SATContract) {
+        await this.web3.loadAbisContract();
+      }
+
       return true;
     } else {
       return false;

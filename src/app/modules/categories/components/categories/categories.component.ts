@@ -16,6 +16,7 @@ import { EventService } from 'src/app/data/services/event.service';
 import { NgForm } from '@angular/forms';
 import { CategoryTable } from 'src/app/data/models/categoryModel';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/data/services/shared.service';
 
 @Component({
   selector: 'app-categories',
@@ -42,34 +43,18 @@ export class CategoriesComponent implements OnInit {
   totalExpanded!: number;
   items!: Array<any>;
   selectedCategory!: CategoryTable;
-  /*= [
-    {
-      name: 'Categoria 1',
-      description: 'Descrição 1',
-      votesCount: '0',
-      detail: [
-        {
-          totallySustainable: 'totallySustainable',
-          partiallySustainable: 'partiallySustainable',
-          neutro: 'neutro',
-          totallyNotSustainable: 'totallyNotSustainable',
-          partiallyNotSustainable: 'partiallyNotSustainable',
-        },
-      ],
-    },
-  ];*/
   public readonly actions: Array<PoPageAction> = [
     {
       label: 'Load Categories',
       action: this.getCategories.bind(this),
       icon: 'po-icon-change',
-      disabled: () => !this.web3.account,
+      disabled: () => !this.web3.account ||this.userType == 2,
     },
     {
       label: 'Create New Category',
       action: this.modalOpen.bind(this),
       icon: 'po-icon-change',
-      disabled: () => !this.web3.account,
+      disabled: () => !this.web3.account ||this.userType == 2,
     },
   ];
 
@@ -141,11 +126,13 @@ export class CategoriesComponent implements OnInit {
   };
 
   accountPersona: Promise<any> | undefined;
+  userType: any;
 
   constructor(
     public web3: Web3Service,
     private poNotification: PoNotificationService,
-    private router: Router
+    private router: Router,
+    private sharedService:SharedService
   ) {
     EventService.get('accountStatus').subscribe((data) => {
       console.log(data);
@@ -158,7 +145,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCategories();
+    this.web3.loadWeb3();
   }
 
   modalOpen() {
@@ -279,45 +266,31 @@ export class CategoriesComponent implements OnInit {
         this.web3.getUser().then((res) => {
           console.log(res);
 
+          this.userType = res;
+
           switch (res) {
             case '0':
-              console.log('new register')
+              console.log('new register');
               this.router.navigate(['dashboard/register']);
               break;
 
             case '1':
               this.accountPersona = this.web3.getProducer().then((res) => {
                 console.log(res);
+                EventService.get('accountRole').emit('Producer')
+                this.sharedService.accountRole = 'Producer'
               });
               break;
 
             case '2':
               this.accountPersona = this.web3.getActivist().then((res) => {
                 console.log(res);
+                EventService.get('accountRole').emit('Activist')
+                this.sharedService.accountRole = 'Activist'
               });
               break;
           }
         });
-        /*
-        this.accountPersona = this.web3.producerExists().then((res)=>{
-          console.log( res)
-          if(!res){
-            this.web3.activistExists().then((res)=>{
-              console.log( res)
-              if(!res){
-                this.router.navigate(['dashboard/register'])
-              }else{
-                this.web3.getActivist().then(res=>{
-                  console.log(res)
-                })
-              }
-            })
-          }else{
-            this.web3.getProducer().then(res=>{
-              console.log(res)
-            })
-          }
-        })*/
 
         this.web3
           .getCategories()

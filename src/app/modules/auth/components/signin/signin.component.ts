@@ -12,6 +12,7 @@ export class SigninComponent implements OnInit {
 
   constructor(private web3:Web3Service,private router:Router) { }
 
+  background ='src/assets/img/sintrop_login_back.jpg'
   ngOnInit(): void {
 
 

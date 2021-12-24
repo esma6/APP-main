@@ -8,6 +8,7 @@ import {
 import { EventService } from 'src/app/data/services/event.service';
 import { StorageService } from 'src/app/data/services/storage.service';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/data/services/shared.service';
 
 @Component({
   selector: 'app-dashboard-layout',
@@ -49,7 +50,8 @@ export class DashboardLayoutComponent implements OnInit {
   actions: Array<PoToolbarAction> | undefined;
   actionsIcon: string | undefined;
   constructor(private web3: Web3Service,private cdRef: ChangeDetectorRef,
-    private storage:StorageService,private router: Router,) {
+    private storage:StorageService,private router: Router,
+    private sharedService:SharedService) {
 
     EventService.get('accountStatus').subscribe((data) => {
       console.log(data);
@@ -62,12 +64,7 @@ export class DashboardLayoutComponent implements OnInit {
       }
     });
 
-    EventService.get('accountDetails').subscribe((data) => {
-      if(data){
 
-
-      }
-    })
   }
 @ViewChild('iconTemplate', { static: true } ) iconTemplate : TemplateRef<void> | undefined;
 @ViewChild('iconTemplate1', { static: true } ) iconTemplate1 : TemplateRef<void> | undefined;
@@ -80,6 +77,7 @@ export class DashboardLayoutComponent implements OnInit {
 @ViewChild('iconTemplate8', { static: true } ) iconTemplate8 : TemplateRef<void> | undefined;
 
   ngOnInit(): void {
+    this.web3.loadWeb3();
     this.menus[0].icon = this.iconTemplate
     this.menus[1].icon = this.iconTemplate1
     this.menus[2].icon = this.iconTemplate2
@@ -88,7 +86,6 @@ export class DashboardLayoutComponent implements OnInit {
     this.menus[5].icon = this.iconTemplate5
     this.menus[6].icon = this.iconTemplate6
     this.menus[7].icon = this.iconTemplate7
-    this.menus[8].icon = this.iconTemplate8
 
     if (this.web3.account && this.web3.account[0]) {
       this.accountNumber = this.web3.account[0];
@@ -96,6 +93,8 @@ export class DashboardLayoutComponent implements OnInit {
     }else{
       this.router.navigate(['dashboard/isa'])
     }
+
+
   }
 
   menus: Array<PoMenuItem> = [
@@ -105,6 +104,7 @@ export class DashboardLayoutComponent implements OnInit {
       icon: 'po-icon-clock',
       shortLabel: 'ISA'
     },
+
     {
       label: 'Inspections',
       action: this.printMenuAction.bind(this),
@@ -143,37 +143,44 @@ export class DashboardLayoutComponent implements OnInit {
       shortLabel: 'Certificate',
     },
 
-    {
-      label: 'Producer Pool',
-      action: this.printMenuAction.bind(this),
-      icon: 'po-icon-user',
-      shortLabel: 'Producer Pool',
-    },
-
 
     {
-      label: 'Activist Pool',
-      action: this.printMenuAction.bind(this),
-      icon: 'po-icon-user',
-      shortLabel: 'Activist Pool',
+      label: 'Pools',
+      icon: 'po-icon-share',
+      shortLabel: 'Pools',
+      subItems: [
+        {
+          label: 'Producer Pool',
+          action: this.printMenuAction.bind(this),
+          shortLabel: 'Producer Pool',
+          id:'Producer Pool'
+        },
+
+
+        {
+          label: 'Activist Pool',
+          action: this.printMenuAction.bind(this),
+          icon: 'po-icon-user',
+          shortLabel: 'Activist Pool',
+        },
+
+
+        {
+          label: 'Dev Pool',
+          action: this.printMenuAction.bind(this),
+          icon: 'po-icon-user',
+          shortLabel: 'Dev Pool',
+        },
+
+
+        {
+          label: 'Researcher Pool',
+          action: this.printMenuAction.bind(this),
+          icon: 'po-icon-user',
+          shortLabel: 'Researcher Pool',
+        },
+      ]
     },
-
-
-    {
-      label: 'Dev Pool',
-      action: this.printMenuAction.bind(this),
-      icon: 'po-icon-user',
-      shortLabel: 'Dev Pool',
-    },
-
-
-    {
-      label: 'Researcher Pool',
-      action: this.printMenuAction.bind(this),
-      icon: 'po-icon-user',
-      shortLabel: 'Researcher Pool',
-    },
-
 
   ];
 
@@ -212,17 +219,17 @@ export class DashboardLayoutComponent implements OnInit {
     if (menu.shortLabel == 'Certificate') {
       this.router.navigate([`dashboard/certificate/${this.accountNumber}`])
     }
-    if (menu.shortLabel == 'Producer Pool') {
+    if (menu.label == "Producer Pool") {
       this.router.navigate([`dashboard/producer-pool/${this.accountNumber}`])
     }
 
-    if (menu.shortLabel == 'Activist Pool') {
+    if (menu.label == 'Activist Pool') {
       this.router.navigate([`dashboard/activist-pool/${this.accountNumber}`])
     }
-    if (menu.shortLabel == 'Dev Pool') {
+    if (menu.label == 'Dev Pool') {
       this.router.navigate([`dashboard/developers-pool/${this.accountNumber}`])
     }
-    if (menu.shortLabel == 'Researcher Pool') {
+    if (menu.label == 'Researcher Pool') {
       this.router.navigate([`dashboard/researcher-pool/${this.accountNumber}`])
     }
 

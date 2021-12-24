@@ -37,13 +37,13 @@ export class InspectionsComponent implements OnInit {
       label: 'Load Inspections',
       action: this.getInspections.bind(this),
       icon: 'po-icon-change',
-      disabled: () => !this.web3.account,
+      disabled: () => !this.web3.account ||this.userType == 2,
     },
     {
-      label: 'Create New Inspection',
+      label: 'Request New Inspection',
       action: this.addInspections.bind(this),
       icon: 'po-icon-change',
-      disabled: () => !this.web3.account,
+      disabled: () => !this.web3.account ||this.userType == 2,
     },
   ];
 
@@ -114,6 +114,7 @@ export class InspectionsComponent implements OnInit {
     },
   ];
   selectedInspection: any;
+  userType: any;
 
   constructor(
     private web3: Web3Service,
@@ -185,6 +186,11 @@ export class InspectionsComponent implements OnInit {
 
   public async getInspections() {
     this.loadingInspections = true;
+    this.web3.getUser().then((res) => {
+      console.log(res);
+
+      this.userType = res;
+    })
     this.checkAccount().then(async (res) => {
 
       console.log(res);

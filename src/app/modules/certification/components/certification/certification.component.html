@@ -7,6 +7,25 @@
   [p-breadcrumb]="breadcrumb"
   ><div>
     <po-container class="po-lg-10 po-xl-10 po-offset-lg-1 po-offset-xl-1 mb-2">
+
+  <div class="po-row po-mb-4">
+    <div class="po-ml-1 po-col-3">
+      <po-button p-label="Copy URL" (p-click)="copyUrl()"> </po-button>
+    </div>
+
+    <div class="po-ml-4">
+      <po-button p-label="Download Image" (p-click)="saveImage()">
+      </po-button>
+    </div>
+
+    <div class="po-ml-4">
+      <po-button
+        p-label="Receive by E-mail"
+        (p-click)="sendCertificateByEmail()"
+      >
+      </po-button>
+    </div>
+  </div>
       <div id="Certificate" #Certificate style="background-color: white">
         <h4 class="po-ml-1">
           <b>{{ accountRole == "Producer" ? "PRODUCER" : "ACTIVIST" }}:</b>
@@ -121,26 +140,114 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="po-row po-mt-4">
-        <div class="po-ml-2 po-col-3">
-          <po-button p-label="Copy URL" (p-click)="copyUrl()"> </po-button>
+
+<hr>
+    <h2 class="po-mb-2 po-mt-2">Inspection History</h2>
+    <po-list-view
+      p-property-title="name"
+      [p-items]="inspections"
+      [p-actions]="actions"
+    >
+      <ng-template p-list-view-content-template let-item>
+        <div class="po-row po-mb-3">
+          <div class="po-md-6">
+            <div class="po-row">
+              <po-info
+                [p-label]="
+                  accountRole == 'Producer'
+                    ? 'Activist Wallet'
+                    : 'Producer Wallet'
+                "
+                [p-value]="
+                  accountRole == 'Producer'
+                    ? item.activistWallet
+                    : item.producerWallet
+                "
+              ></po-info>
+            </div>
+          </div>
+          <po-info
+            class="po-md-2"
+            p-label="Created At"
+            [p-value]="item.date"
+          ></po-info>
+
+          <po-info
+          [p-orientation]="orientation"
+          class="po-md-2"
+          p-label="Inspection Isa Average"
+          [p-value]="item.isaPoints"
+        ></po-info>
         </div>
 
-        <div class="po-ml-4">
-          <po-button p-label="Download Image" (p-click)="saveImage()">
-          </po-button>
-        </div>
 
-        <div class="po-ml-4">
-          <po-button
-            p-label="Receive by E-mail"
-            (p-click)="sendCertificateByEmail()"
-          >
-          </po-button>
-        </div>
-      </div>
-    </po-container>
+
+
+        <ng-container  *ngFor="let result of item.result" >
+          <div class="po-row ">
+            <po-info
+            [p-orientation]="orientation"
+              class="po-md-12"
+              p-label="Result of Inspection {{result.categorie.name}}"
+              [p-value]="result.value"
+            ></po-info>
+          </div>
+        </ng-container>
+
+
+      </ng-template>
+    </po-list-view>
   </div>
+
+    </po-container>
+
+
+  <po-modal
+  #inspectionModal
+  [p-title]="
+    accountRole == 'Producer' ? 'Activist Account' : 'Producer Account'
+  "
+  p-size="sm"
+>
+  <div class="po-row">
+    <po-info
+      class="po-md-12"
+      [p-label]="
+        accountRole == 'Producer' ? 'Activist Name' : 'Producer Name'
+      "
+      [p-value]="inpectionAccount?.name"
+    >
+    </po-info>
+
+    <po-info
+      class="po-md-12"
+      p-label="Address"
+      [p-value]="
+        accountRole == 'Producer'
+          ? inpectionAccount?.activistAddress.city +
+            ' - ' +
+            inpectionAccount?.activistAddress.state +
+            ', ' +
+            inpectionAccount?.activistAddress.country
+          : inpectionAccount?.property_address.city +
+            ' - ' +
+            inpectionAccount?.property_address?.state +
+            ', ' +
+            inpectionAccount?.property_address?.country
+      "
+    >
+    </po-info>
+    <p class="po-md-12">
+      {{
+        accountRole == "Producer"
+          ? inpectionAccount?.activistAddress.cep
+          : inpectionAccount?.property_address.cep
+      }}
+    </p>
+  </div>
+</po-modal>
+  </div>
+
+
 </po-page-default>

@@ -19,6 +19,8 @@
         >
         </po-info>
 
+
+
         <po-info
           class="col-lg-12"
           p-label="Wallet"
@@ -73,16 +75,14 @@
         </div>
       </po-widget>
 
-      <po-widget class="po-lg-4 po-mb-1" p-title="Isa" [p-primary]="true">
+      <po-widget class="po-lg-4 po-mb-1" p-title="Isa Average" [p-primary]="true">
         <div class="po-font-subtitle po-text-center">
-          {{ accountDetails.isaPoints }}
+          {{ this.isaScore /this.inspections.length}}
         </div>
       </po-widget>
 
-      <po-widget class="po-lg-4 po-mb-1" p-title="Tokens Earned">
-        <div class="po-font-subtitle po-text-center">{{     accountRole == 'Producer'
-          ? accountDetails.tokenApprove.allowed + ' SAT'
-          : 0}}</div>
+      <po-widget class="po-lg-4 po-mb-1" p-title="Isa Score">
+        <div class="po-font-subtitle po-text-center">{{this.isaScore}}</div>
       </po-widget>
     </div>
 
@@ -122,6 +122,8 @@
           p-label="Inspection Isa Average"
           [p-value]="item.isaPoints"
         ></po-info>
+
+
         </div>
 
 
@@ -132,8 +134,26 @@
             <po-info
             [p-orientation]="orientation"
               class="po-md-12"
-              p-label="Result of Inspection {{result.categorie.name}}"
+              p-label= "{{result.categorie.name}}"
               [p-value]="result.value"
+            ></po-info>
+          </div>
+
+          <div class="po-row">
+            <po-info
+            [p-orientation]="orientation"
+              class="po-md-12"
+              p-label="Result of Inspection"
+              [p-value]="result.result"
+            ></po-info>
+          </div>
+
+          <div class="po-row">
+            <po-info
+            [p-orientation]="orientation"
+              class="po-md-12"
+              p-label="Producer Wallet"
+              [p-value]="item.producerWallet"
             ></po-info>
           </div>
         </ng-container>

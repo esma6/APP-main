@@ -366,7 +366,7 @@ export class Web3Service {
 
   public async getInspectionsHistory() {
     const inspections = await this.sintropContract.methods
-      .getInspectionsHistory()
+      .getInspectionsHistory(this.account[0])
       .call()
       .then((e: any) => {
         console.log(e);

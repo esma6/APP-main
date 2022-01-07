@@ -10,7 +10,7 @@ import {
   PoTableComponent,
   PoTableDetail,
 } from '@po-ui/ng-components';
-import { Status } from 'src/app/data/models/statusEnum';
+import { resultDescription, Status } from 'src/app/data/models/statusEnum';
 import { Web3Service } from 'src/app/data/services/web3.service';
 
 @Component({
@@ -21,6 +21,7 @@ import { Web3Service } from 'src/app/data/services/web3.service';
 export class InspectionsComponent implements OnInit {
   @ViewChild('inspectModal') inspectModal!: PoModalComponent;
   @ViewChild('acceptInspectModal') acceptInspectModal!: PoModalComponent;
+  @ViewChild('resultInspectModal') resultInspectModal!: PoModalComponent;
   @ViewChild(PoTableComponent, { static: true }) poTable!: PoTableComponent;
 
   items!: Array<any>;
@@ -37,13 +38,13 @@ export class InspectionsComponent implements OnInit {
       label: 'Load Inspections',
       action: this.getInspections.bind(this),
       icon: 'po-icon-change',
-      disabled: () => !this.web3.account ||this.userType == 2,
+      disabled: () => !this.web3.account || this.userType == 2,
     },
     {
-      label: 'Request New Inspection',
+      label: 'Create New Inspection',
       action: this.addInspections.bind(this),
       icon: 'po-icon-change',
-      disabled: () => !this.web3.account ||this.userType == 2,
+      disabled: () => !this.web3.account || this.userType == 2,
     },
   ];
 
@@ -52,6 +53,11 @@ export class InspectionsComponent implements OnInit {
       action: this.inspectionDetails.bind(this),
       icon: 'po-icon-warning',
       label: 'Accept',
+    },
+    {
+      action: this.inspectionResult.bind(this),
+      icon: 'po-icon-export',
+      label: 'See Result',
     },
   ];
 
@@ -72,6 +78,13 @@ export class InspectionsComponent implements OnInit {
   public readonly inspectCancelAction: PoModalAction = {
     action: () => {
       this.inspectModalClose();
+    },
+    label: 'Cancel',
+  };
+
+  public readonly resultInspectCancelAction: PoModalAction = {
+    action: () => {
+      this.resultInspectModalClose();
     },
     label: 'Cancel',
   };
@@ -104,8 +117,19 @@ export class InspectionsComponent implements OnInit {
     { property: 'createdBy', label: 'Created By' },
     { property: 'created_at', label: 'Created At', type: 'dateTime' },
     { property: 'expiresIn', label: 'Expires In', type: 'dateTime' },
-    { property: 'status', label: 'status' },
+    {
+      property: 'status',
+      type: 'label',
+      labels: [
+        { value: 'Inspected', color: 'color-11', label: 'Inspected' },
+        { value: 'Open', color: 'color-08', label: 'Open' },
+        { value: 'Accepted', color: 'color-01', label: 'Accepted' },
+        { value: 'Expired', color: 'color-07', label: 'Expired' },
+      ],
+    },
+
     { property: 'isa', label: 'Isa Average' },
+
     {
       property: 'detail',
       label: 'Details',
@@ -115,6 +139,15 @@ export class InspectionsComponent implements OnInit {
   ];
   selectedInspection: any;
   userType: any;
+  categories: any;
+
+  IsaStatus = [
+    'Totally Sustainable',
+    'Partially Sustainable',
+    'Neutro',
+    'Partially Not Sustainable',
+    'Totally Not Sustainable',
+  ];
 
   constructor(
     private web3: Web3Service,
@@ -185,52 +218,94 @@ export class InspectionsComponent implements OnInit {
   }
 
   public async getInspections() {
+    this.getCategories();
     this.loadingInspections = true;
     this.web3.getUser().then((res) => {
       console.log(res);
 
       this.userType = res;
-    })
-    this.checkAccount().then(async (res) => {
+    });
 
+    this.checkAccount().then(async (res) => {
       console.log(res);
       if (res) {
         this.web3.getInspections().then((res) => {
-          console.log(res);
           this.items = [];
-          this.inspectionsArray = res;
-
-          for (let i = 0; i < this.inspectionsArray.length; i++) {
-            let initialChars = this.inspectionsArray[i]['producerWallet'];
-
-            let createdBy = `${initialChars.substring(
-              0,
-              5
-            )}...${initialChars.substring(
-              initialChars.length - 5,
-              initialChars.length
-            )}`;
-
-            this.items.push({
-              createdBy: createdBy,
-              created_at: new Date(
-                this.inspectionsArray[i]['createdAt'] * 1000
-              ),
-              expiresIn: new Date(
-                this.inspectionsArray[i]['expiresIn'] * 1000
-              ),
-              status: Status[this.inspectionsArray[i]['status']],
-              id: this.inspectionsArray[i]['id'],
-              prodId: this.inspectionsArray[i]['producerWallet'],
-              statusEnum: this.inspectionsArray[i]['status'],
-              dateTimeUnix: this.inspectionsArray[i]['createdAt'],
-              isa: this.inspectionsArray[i]['isaAverage'],
-            });
-          }
+          this.inspectionsArray = res.map((item: any) =>
+            Object.assign({}, item, {
+              date: new Date(item.createdAt * 1000).toLocaleDateString('pt-Br'),
+              result: [],
+            })
+          );
 
           setTimeout(() => {
-            this.loadingInspections = false;
-          }, 200);
+            console.log(this.categories);
+
+            /**/ for (let i = 0; i < this.inspectionsArray.length; i++) {
+              if (this.inspectionsArray[i].status !== '0') {
+                for (
+                  let index = 0;
+                  index < this.inspectionsArray[i].isas?.length;
+                  index++
+                ) {
+                  console.log(this.inspectionsArray);
+                  if (   this.inspectionsArray[i].isas[index][0]) {
+                    let categorie =
+                    this.categories[
+                      this.inspectionsArray[i].isas[index][0] - 1
+                    ];
+                    this.inspectionsArray[i].result.push({
+                      categorie: categorie,
+                      value:
+                        this.IsaStatus[this.inspectionsArray[i].isas[index][1]],
+                      result:
+                        resultDescription[
+                          parseInt(this.inspectionsArray[i].isas[index][1])
+                        ],
+                    });
+                  }
+
+
+                }
+              }
+            }
+
+            for (let i = 0; i < this.inspectionsArray.length; i++) {
+              let initialChars = this.inspectionsArray[i]['producerWallet'];
+
+              let createdBy = `${initialChars.substring(
+                0,
+                5
+              )}...${initialChars.substring(
+                initialChars.length - 5,
+                initialChars.length
+              )}`;
+
+              this.items.push({
+                createdBy: createdBy,
+                created_at: new Date(
+                  this.inspectionsArray[i]['createdAt'] * 1000
+                ),
+                expiresIn: new Date(
+                  this.inspectionsArray[i]['expiresIn'] * 1000
+                ),
+                status: Status[this.inspectionsArray[i]['status']],
+                id: this.inspectionsArray[i]['id'],
+                date: this.inspectionsArray[i]['date'],
+                prodId: this.inspectionsArray[i]['producerWallet'],
+                statusEnum: this.inspectionsArray[i]['status'],
+                dateTimeUnix: this.inspectionsArray[i]['createdAt'],
+                isa: this.inspectionsArray[i]['isaPoints'],
+                results: Status[this.inspectionsArray[i]['status']],
+                activistWallet: this.inspectionsArray[i]['activistWallet'],
+                result: this.inspectionsArray[i]['result'],
+              });
+            }
+
+            setTimeout(() => {
+              this.loadingInspections = false;
+            }, 200);
+          }, 500);
         });
       } else {
         setTimeout(() => {
@@ -242,13 +317,29 @@ export class InspectionsComponent implements OnInit {
 
   public inspectionDetails(inspection: any) {
     this.selectedInspection = inspection;
-    console.log(this.selectedInspection )
+    console.log(this.selectedInspection);
     if (this.selectedInspection.statusEnum != '0') {
-      this.poNotification.error({message:'This inspection is unavailable to get accepted!',duration:5000})
-    }else{
+      this.poNotification.error({
+        message: 'This inspection is unavailable to get accepted!',
+        duration: 5000,
+      });
+    } else {
       this.acceptInspectModal.open();
     }
+  }
 
+  public inspectionResult(inspection: any) {
+    console.log(inspection);
+
+    if (inspection.statusEnum != '0') {
+      this.selectedInspection = inspection;
+      this.resultInspectModal.open();
+    } else {
+      this.poNotification.error({
+        message: 'This inspection must be inspected before!',
+        duration: 5000,
+      });
+    }
   }
 
   public addInspections() {
@@ -272,9 +363,14 @@ export class InspectionsComponent implements OnInit {
     );
   }
 
+  async getCategories() {
+    this.web3.getCategories().then((res) => {
+      this.categories = res;
+    });
+  }
+
   acceptInspection() {
     this.acceptInspectModal.close();
-
 
     this.loadingInspections = true;
     console.log(this.web3.accDetails);
@@ -282,10 +378,10 @@ export class InspectionsComponent implements OnInit {
     if (this.web3.accDetails && this.web3.accDetails.role == 'PRODUCER') {
       this.poNotification.error({
         message: 'The account must be from a Activist to accept the Inspection',
-        duration:5000
+        duration: 5000,
       });
       this.loadingInspections = false;
-      return
+      return;
     } else {
       this.web3.acceptInspection(this.selectedInspection.id).then(
         (res) => {
@@ -293,7 +389,7 @@ export class InspectionsComponent implements OnInit {
           this.notificationAlertSuccess(
             'Inspection accepted: ' + res.transactionHash
           );
-            this.getInspections()
+          this.getInspections();
           console.log(res);
         },
         (err) => {
@@ -309,6 +405,9 @@ export class InspectionsComponent implements OnInit {
     this.inspectModal.close();
   }
 
+  resultInspectModalClose() {
+    this.resultInspectModal.close();
+  }
   acceptInspectModalClose() {
     this.selectedInspection = '';
     this.acceptInspectModal.close();

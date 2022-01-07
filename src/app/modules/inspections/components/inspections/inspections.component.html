@@ -2,43 +2,114 @@
 </po-loading-overlay>
 
 <po-page-default
-p-title="Inspections"
+  p-title="Inspections"
   [p-breadcrumb]="breadcrumb"
   [p-actions]="actions"
 >
-
-
-<po-container class="po-lg-12">
-  <po-table
-    [p-auto-collapse]="true"
-    [p-hide-detail]="false"
-    [p-sort]="true"
-    [p-striped]="true"
-    [p-columns]="columns"
-    [p-items]="items"
-    [p-actions]="TableActions"
-    (p-collapsed)="onCollapseDetail()"
-    (p-expanded)="onExpandDetail()"
-  >
-  </po-table>
-</po-container>
-
+  <po-container class="po-lg-12">
+    <po-table
+      [p-auto-collapse]="true"
+      [p-hide-detail]="false"
+      [p-sort]="true"
+      [p-striped]="true"
+      [p-columns]="columns"
+      [p-items]="items"
+      [p-actions]="TableActions"
+      (p-collapsed)="onCollapseDetail()"
+      (p-expanded)="onExpandDetail()"
+    >
+    </po-table>
+  </po-container>
 </po-page-default>
 
-
-<po-modal #inspectModal   p-title="Request Inspection"
-[p-primary-action]="requestInspectionAction"
+<po-modal
+  #inspectModal
+  p-title="Request Inspection"
+  [p-primary-action]="requestInspectionAction"
   [p-secondary-action]="inspectCancelAction"
-  p-size="sm">
-
+  p-size="sm"
+>
   <h2>Would you like to request a Inspection?</h2>
 </po-modal>
 
-<po-modal #acceptInspectModal   p-title="
+<po-modal
+  #acceptInspectModal
+  p-title="
 Choose Inspection"
-[p-primary-action]="acceptInspectionAction"
+  [p-primary-action]="acceptInspectionAction"
   [p-secondary-action]="acceptInspectCancelAction"
-  p-size="sm">
-
+  p-size="sm"
+>
   <h2>Would you like to accept this Inspection?</h2>
+</po-modal>
+
+<po-modal
+  #resultInspectModal
+  p-title="
+Inspection Result"
+  [p-primary-action]="acceptInspectionAction"
+  [p-secondary-action]="resultInspectCancelAction"
+  p-size="sm"
+>
+  <po-container>
+    <div class="po-row">
+      <po-container class="po-md-12">
+        <div class="po-row">
+          <div class="po-md-6">
+            <div class="po-row">
+              <po-info
+                p-label="Producer Wallet"
+                [p-value]="selectedInspection?.prodId"
+              ></po-info>
+            </div>
+          </div>
+        </div>
+        <div class="po-row">
+          <div class="po-md-6">
+            <div class="po-row">
+              <po-info
+                p-label="Activist Wallet"
+                [p-value]="selectedInspection?.activistWallet"
+              ></po-info>
+            </div>
+          </div>
+        </div>
+      </po-container>
+    </div>
+
+    <div class="po-row po-mt-2 po-mb-2">
+      <po-container class="po-md-6">
+        <po-info
+          p-label="Created At"
+          [p-value]="selectedInspection?.date"
+        ></po-info>
+      </po-container>
+      <po-container class="po-md-6">
+        <po-info
+          p-label="Inspection Isa Average"
+          [p-value]="selectedInspection?.isa"
+        ></po-info>
+      </po-container>
+    </div>
+
+    <ng-container class="po-mt-2"
+      *ngFor="let result of selectedInspection?.result; let i = index"
+    >
+      <po-container class="po-md-12">
+        <div class="po-row po-mt-2">
+          <po-info
+            p-label="Result of Inspection"
+            [p-value]="result.result"
+          ></po-info>
+        </div>
+
+        <div class="po-row po-mt-2">
+          <po-info
+            p-label="{{ result.categorie.name }}"
+            [p-value]="result.value"
+          ></po-info>
+        </div>
+      </po-container>
+    </ng-container>
+  </po-container>
 </po-modal>

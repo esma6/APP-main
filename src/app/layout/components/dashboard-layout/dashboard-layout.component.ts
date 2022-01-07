@@ -87,6 +87,8 @@ export class DashboardLayoutComponent implements OnInit {
     this.menus[6].icon = this.iconTemplate6
     this.menus[7].icon = this.iconTemplate7
 
+    console.log(  this.menus[7].subItems)
+
     if (this.web3.account && this.web3.account[0]) {
       this.accountNumber = this.web3.account[0];
       this.profileActions[2].label = 'Disconnect Account';
@@ -153,14 +155,15 @@ export class DashboardLayoutComponent implements OnInit {
           label: 'Producer Pool',
           action: this.printMenuAction.bind(this),
           shortLabel: 'Producer Pool',
-          id:'Producer Pool'
+          id:'Producer Pool',
+          icon: 'fa fa-podcast'
         },
 
 
         {
           label: 'Activist Pool',
           action: this.printMenuAction.bind(this),
-          icon: 'po-icon-user',
+          icon: 'fa fa-podcast',
           shortLabel: 'Activist Pool',
         },
 
@@ -168,7 +171,7 @@ export class DashboardLayoutComponent implements OnInit {
         {
           label: 'Dev Pool',
           action: this.printMenuAction.bind(this),
-          icon: 'po-icon-user',
+          icon: 'fa fa-podcast',
           shortLabel: 'Dev Pool',
         },
 
@@ -176,7 +179,7 @@ export class DashboardLayoutComponent implements OnInit {
         {
           label: 'Researcher Pool',
           action: this.printMenuAction.bind(this),
-          icon: 'po-icon-user',
+          icon: 'fa fa-podcast',
           shortLabel: 'Researcher Pool',
         },
       ]

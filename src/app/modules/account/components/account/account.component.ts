@@ -11,6 +11,7 @@ import {
   PoWidgetComponent,
 } from '@po-ui/ng-components';
 import { Web3Service } from 'src/app/data/services/web3.service';
+import { resultDescription } from 'src/app/data/models/statusEnum';
 
 @Component({
   selector: 'app-account',
@@ -31,7 +32,7 @@ export class AccountComponent implements OnInit {
   accountRole!: string;
 
   inspections: any;
-  orientation:PoInfoOrientation = PoInfoOrientation.Horizontal
+  orientation: PoInfoOrientation = PoInfoOrientation.Horizontal;
   IsaStatus = [
     'Totally Sustainable',
     'Partially Sustainable',
@@ -39,12 +40,18 @@ export class AccountComponent implements OnInit {
     'Partially Not Sustainable',
     'Totally Not Sustainable',
   ];
-
+  isaScore: number = 0;
   readonly actions: Array<PoListViewAction> = [
     {
       label: `See account detail`,
       action: this.seeDetail.bind(this),
       icon: 'po-icon po-icon-eye',
+    },
+    {
+      label: `Report`,
+      action: this.reportInspection.bind(this),
+      icon: 'po-icon po-icon-warning',
+      type: 'danger',
     },
   ];
   inpectionAccount: any;
@@ -91,7 +98,9 @@ export class AccountComponent implements OnInit {
               this.web3.getProducer().then((res) => {
                 this.accountRole = 'Producer';
                 console.log(res);
+
                 this.accountDetails = res;
+
                 this.loadingAccount = false;
                 this.getInspectionsHistory();
               });
@@ -116,24 +125,29 @@ export class AccountComponent implements OnInit {
 
   getInspectionsHistory() {
     this.web3.getInspectionsHistory().then((res) => {
+      let isaScore = 0;
       this.inspections = res.map((item: any) =>
         Object.assign({}, item, {
           date: new Date(item.createdAt * 1000).toLocaleDateString('pt-Br'),
-          result:[]
+          result: [],
         })
       );
 
       for (let i = 0; i < this.inspections.length; i++) {
-
+        isaScore += parseInt(this.inspections[i].isaPoints);
         for (let index = 0; index < this.inspections[i].isas.length; index++) {
           this.inspections[i].result.push({
-            categorie:this.categories[this.inspections[i].isas[index][0]-1],
-            value: this.IsaStatus[this.inspections[i].isas[index][1]]
-          })
+            categorie: this.categories[this.inspections[i].isas[index][0] - 1],
+            value: this.IsaStatus[this.inspections[i].isas[index][1]],
+            result:
+              resultDescription[parseInt(this.inspections[i].isas[index][1])],
+          });
         }
-
       }
-console.log(this.inspections)
+
+      this.isaScore = isaScore;
+      console.log(this.inspections);
+      console.log(isaScore);
     });
   }
 
@@ -161,6 +175,13 @@ console.log(this.inspections)
         }, 200);
       });
     }
+  }
+
+  reportInspection() {
+    this.poNotification.error({
+      message: 'Inspection reported',
+      duration: 3000,
+    });
   }
 
   async getCategories() {

@@ -96,17 +96,31 @@ Inspection Result"
       *ngFor="let result of selectedInspection?.result; let i = index"
     >
       <po-container class="po-md-12">
-        <div class="po-row po-mt-2">
+
+        <div class="po-row po-mt-1">
+          <po-info
+            p-label="Category"
+            [p-value]="result.categorie.name"
+          ></po-info>
+        </div>
+        <div class="po-row">
+          <po-info
+            p-label="Category Description"
+            [p-value]="result.categorie.description"
+          ></po-info>
+        </div>
+
+        <div class="po-row po-mt-1">
           <po-info
             p-label="Result of Inspection"
             [p-value]="result.result"
           ></po-info>
         </div>
 
-        <div class="po-row po-mt-2">
+        <div class="po-row po-mt-1">
           <po-info
-            p-label="{{ result.categorie.name }}"
-            [p-value]="result.value"
+            p-label="Result Description"
+            [p-value]="result.resultDescription"
           ></po-info>
         </div>
       </po-container>

@@ -1,4 +1,4 @@
-<po-loading-overlay *ngIf="loadingAccount" p-text="Carregando">
+<po-loading-overlay *ngIf="loadingAccount" p-text="Loading">
 </po-loading-overlay>
 
 <po-page-default
@@ -126,7 +126,7 @@
 
         </div>
 
-
+        <po-divider></po-divider>
 
 
         <ng-container  *ngFor="let result of item.result" >
@@ -134,12 +134,20 @@
             <po-info
             [p-orientation]="orientation"
               class="po-md-12"
-              p-label= "{{result.categorie.name}}"
-              [p-value]="result.value"
+              p-label= "Category"
+              [p-value]="result.categorie.name"
             ></po-info>
           </div>
 
-          <div class="po-row">
+          <div class="po-row ">
+            <po-info
+              class="po-md-12"
+              p-label= "Category Description"
+              [p-value]="result.categorie.description"
+            ></po-info>
+          </div>
+
+          <div class="po-row po-mt-2">
             <po-info
             [p-orientation]="orientation"
               class="po-md-12"
@@ -150,12 +158,12 @@
 
           <div class="po-row">
             <po-info
-            [p-orientation]="orientation"
               class="po-md-12"
-              p-label="Producer Wallet"
-              [p-value]="item.producerWallet"
+              p-label="Result Description"
+              [p-value]="result.resultDescription"
             ></po-info>
           </div>
+          <po-divider></po-divider>
         </ng-container>
 
 

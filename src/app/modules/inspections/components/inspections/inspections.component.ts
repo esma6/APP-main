@@ -41,7 +41,7 @@ export class InspectionsComponent implements OnInit {
       disabled: () => !this.web3.account || this.userType == 2,
     },
     {
-      label: 'Create New Inspection',
+      label: 'Request New Inspection',
       action: this.addInspections.bind(this),
       icon: 'po-icon-change',
       disabled: () => !this.web3.account || this.userType == 2,
@@ -248,8 +248,17 @@ export class InspectionsComponent implements OnInit {
                   index < this.inspectionsArray[i].isas?.length;
                   index++
                 ) {
+
+
                   console.log(this.inspectionsArray);
                   if (   this.inspectionsArray[i].isas[index][0]) {
+                    const categorieDetail =[]
+                    categorieDetail.push(this.categories[this.inspectionsArray[i].isas[index][0] - 1].totallySustainable)
+                    categorieDetail.push(this.categories[this.inspectionsArray[i].isas[index][0] - 1].partiallySustainable)
+                    categorieDetail.push(this.categories[this.inspectionsArray[i].isas[index][0] - 1].neutro)
+                    categorieDetail.push(this.categories[this.inspectionsArray[i].isas[index][0] - 1].partiallyNotSustainable)
+                    categorieDetail.push(this.categories[this.inspectionsArray[i].isas[index][0] - 1].totallyNotSustainable)
+
                     let categorie =
                     this.categories[
                       this.inspectionsArray[i].isas[index][0] - 1
@@ -258,10 +267,9 @@ export class InspectionsComponent implements OnInit {
                       categorie: categorie,
                       value:
                         this.IsaStatus[this.inspectionsArray[i].isas[index][1]],
-                      result:
-                        resultDescription[
-                          parseInt(this.inspectionsArray[i].isas[index][1])
-                        ],
+                        result: resultDescription[parseInt(this.inspectionsArray[i].isas[index][1])],
+                      resultDescription:
+                      categorieDetail[this.inspectionsArray[i].isas[index][1]],
                     });
                   }
 

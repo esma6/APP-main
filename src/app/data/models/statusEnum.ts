@@ -9,9 +9,9 @@ export enum Status {
 
 
 export enum resultDescription {
-  'Resultado Sustentavel ' = 0,
-  'Resultado Parcialmente Sustentavel ' = 1,
-  'Resultado Neutro ' = 2,
-  'Resultado Parcialmente Não Sustentavel ' = 3,
-  'Resultado  Não Sustentavel ' = 4,
+  'Totally Sustainable ' = 0,
+  'Partially Sustainable ' = 1,
+  'Neutro ' = 2,
+  'Partially Not Sustainable' = 3,
+  'Totally Not Sustainable  ' = 4,
 }

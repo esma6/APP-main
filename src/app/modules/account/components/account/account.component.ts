@@ -136,11 +136,21 @@ export class AccountComponent implements OnInit {
       for (let i = 0; i < this.inspections.length; i++) {
         isaScore += parseInt(this.inspections[i].isaPoints);
         for (let index = 0; index < this.inspections[i].isas.length; index++) {
+          const categorieDetail =[]
+          categorieDetail.push(this.categories[this.inspections[i].isas[index][0] - 1].totallySustainable)
+          categorieDetail.push(this.categories[this.inspections[i].isas[index][0] - 1].partiallySustainable)
+          categorieDetail.push(this.categories[this.inspections[i].isas[index][0] - 1].neutro)
+          categorieDetail.push(this.categories[this.inspections[i].isas[index][0] - 1].partiallyNotSustainable)
+          categorieDetail.push(this.categories[this.inspections[i].isas[index][0] - 1].totallyNotSustainable)
+          console.log(categorieDetail)
           this.inspections[i].result.push({
             categorie: this.categories[this.inspections[i].isas[index][0] - 1],
+            //value: this.IsaStatus[this.inspections[i].isas[index][1]],
             value: this.IsaStatus[this.inspections[i].isas[index][1]],
-            result:
-              resultDescription[parseInt(this.inspections[i].isas[index][1])],
+            //resultDescription[parseInt(this.inspections[i].isas[index][1])],
+            result: resultDescription[parseInt(this.inspections[i].isas[index][1])],
+            resultDescription:
+            categorieDetail[this.inspections[i].isas[index][1]],
           });
         }
       }

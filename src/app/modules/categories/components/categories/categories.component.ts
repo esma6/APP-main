@@ -48,13 +48,13 @@ export class CategoriesComponent implements OnInit {
       label: 'Load Categories',
       action: this.getCategories.bind(this),
       icon: 'po-icon-change',
-      disabled: () => !this.web3.account ||this.userType == 2,
+      disabled: () => !this.web3.account ,
     },
     {
       label: 'Create New Category',
       action: this.modalOpen.bind(this),
       icon: 'po-icon-change',
-      disabled: () => !this.web3.account ||this.userType == 2,
+      disabled: () => !this.web3.account ,
     },
   ];
 

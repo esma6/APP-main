@@ -83,10 +83,10 @@ export class InspectionsComponent implements OnInit {
   };
 
   public readonly resultInspectCancelAction: PoModalAction = {
+    label: 'Close',
     action: () => {
       this.resultInspectModalClose();
     },
-    label: 'Cancel',
   };
 
   public readonly acceptInspectCancelAction: PoModalAction = {

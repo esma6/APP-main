@@ -48,6 +48,8 @@ export class CertificationComponent implements OnInit {
     'Totally Not Sustainable',
   ];
   inspections: any;
+  isaScore: number = 0;
+
   constructor(
     private route: ActivatedRoute,
     private poNotification: PoNotificationService,
@@ -144,9 +146,8 @@ export class CertificationComponent implements OnInit {
     this.poNotification.success('Email sent successfully!')
   }
 
-
-
   getInspectionsHistory() {
+    let isaScore = 0;
     this.web3.getInspectionsHistory().then((res) => {
       this.inspections = res.map((item: any) =>
         Object.assign({}, item, {
@@ -156,7 +157,7 @@ export class CertificationComponent implements OnInit {
       );
 
       for (let i = 0; i < this.inspections.length; i++) {
-
+        isaScore += parseInt(this.inspections[i].isaPoints);
         for (let index = 0; index < this.inspections[i].isas.length; index++) {
           this.inspections[i].result.push({
             categorie:this.categories[this.inspections[i].isas[index][0]-1],
@@ -165,6 +166,7 @@ export class CertificationComponent implements OnInit {
         }
 
       }
+      this.isaScore = isaScore;
 console.log(this.inspections)
     });
   }

@@ -16,41 +16,39 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"addToPoolActivist\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"addToPoolProducer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/SAT-pools.sol\":\"SATdistribution\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0xb03df8481a954604ad0c9125680893b2e3f7ff770fe470e38b89ac61b84e8072\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b34655953d18ba3a45b762fb6bdbb6549af69a27435e10ece178742bf70baf45\",\"dweb:/ipfs/QmcqjUoFLLMyx7dbwSHUnDBH6aphkVHXWQvQRRev5EAWEh\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x027b891937d20ccf213fdb9c31531574256de774bda99d3a70ecef6e1913ed2a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://087318b21c528119f649899f5b5580566dd8d7b0303d4904bd0e8580c3545f14\",\"dweb:/ipfs/Qmbn5Mj7aUn8hJuQ8VrQjjEXRsXyJKykgnjR9p4C3nfLtL\"]},\"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol\":{\"keccak256\":\"0x83fe24f5c04a56091e50f4a345ff504c8bff658a76d4c43b16878c8f940c53b2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d4c3df1a7ca104b633a7d81c6c6f5192367d150cd5a32cba81f7f27012729013\",\"dweb:/ipfs/QmSim72e3ZVsfgZt8UceCvbiSuMRHR6WDsiamqNzZahGSY\"]},\"@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0x90565a39ae45c80f0468dc96c7b20d0afc3055f344c8203a0c9258239f350b9f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://26e8b38a7ac8e7b4463af00cf7fff1bf48ae9875765bf4f7751e100124d0bc8c\",\"dweb:/ipfs/QmWcsmkVr24xmmjfnBQZoemFniXjj3vwT78Cz6uqZW1Hux\"]},\"project:/contracts/SAT-pools.sol\":{\"keccak256\":\"0x381c1e8ce0de2750a14bead86fa97c2238b132c623841d9f3d54abbf93a9ab95\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://6b60cbee082984c987a7a1dfa12e3652d39485382cdecbfeaf4c440b7e9ffdc4\",\"dweb:/ipfs/QmNi2cc4H2aTiqf1zu5v2PP9cKV35EkXzTGHiK9t9f3rjY\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50606f80601d6000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c80632f359df1146037578063588a9745146037575b600080fd5b00fea264697066735822122092b48b002fd7abeca35a0096aa4c9117000eace76b4f5465c3ec3c3b1be2e0c464736f6c634300080b0033",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c80632f359df1146037578063588a9745146037575b600080fd5b00fea264697066735822122092b48b002fd7abeca35a0096aa4c9117000eace76b4f5465c3ec3c3b1be2e0c464736f6c634300080b0033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.9+commit.e5eed63a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"addToPoolActivist\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"addToPoolProducer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/Breno/Desktop/Sintrop/SintropContract/contracts/SAT-pools.sol\":\"SATdistribution\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/Breno/Desktop/Sintrop/SintropContract/contracts/SAT-pools.sol\":{\"keccak256\":\"0x381c1e8ce0de2750a14bead86fa97c2238b132c623841d9f3d54abbf93a9ab95\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://6b60cbee082984c987a7a1dfa12e3652d39485382cdecbfeaf4c440b7e9ffdc4\",\"dweb:/ipfs/QmNi2cc4H2aTiqf1zu5v2PP9cKV35EkXzTGHiK9t9f3rjY\"]},\"@openzeppelin/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0xd1d8caaeb45f78e0b0715664d56c220c283c89bf8b8c02954af86404d6b367f8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://300a0cc7be3b26c96c22a47ffa9530a585e1c4f2dba3021d9bf309dc63007487\",\"dweb:/ipfs/QmQmxsvxK6CaJmQ4D8vDCYPLHMqcMmZLcBqedG4GFAbzu9\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x61437cb513a887a1bbad006e7b1c8b414478427d33de47c5600af3c748f108da\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2c3d0973630ed74f2b5ce3944677a885dc70ec32fc83b35f55045a10224da32b\",\"dweb:/ipfs/QmbefZ5RoEZKNHXCALfh683PnaNYzKPcKMFjyY1DVAgq8A\"]},\"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol\":{\"keccak256\":\"0x8de418a5503946cabe331f35fe242d3201a73f67f77aaeb7110acb1f30423aca\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5a376d3dda2cb70536c0a45c208b29b34ac560c4cb4f513a42079f96ba47d2dd\",\"dweb:/ipfs/QmZQg6gn1sUpM8wHzwNvSnihumUCAhxD119MpXeKp8B9s8\"]},\"@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92\",\"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50606f80601d6000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c80632f359df1146037578063588a9745146037575b600080fd5b00fea264697066735822122022ba9f284505264e062f5cdf071734f8a18ac976283bc1b40321211d426c9c5564736f6c63430008090033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c80632f359df1146037578063588a9745146037575b600080fd5b00fea264697066735822122022ba9f284505264e062f5cdf071734f8a18ac976283bc1b40321211d426c9c5564736f6c63430008090033",
   "immutableReferences": {},
-  "generatedSources": [],
-  "deployedGeneratedSources": [],
-  "sourceMap": "134:558:12:-:0;;;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "134:558:12:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;488:94;",
+  "sourceMap": "134:558:8:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "134:558:8:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;488:94;",
   "source": "pragma solidity ^0.8.0;\r\n// SPDX-License-Identifier: GPL-3.0-or-later\r\n\r\n\r\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\r\n\r\ncontract SATdistribution {\r\n\r\n\r\n    function approveProducer() private {\r\n        // requer average ISA > 10 \r\n        // requer mínimo de inspeções = 2 \r\n        // aprovar\r\n    }\r\n    \r\n    function approveActivist() private {\r\n        // requer average ISA > 10 \r\n        // requer mínimo de inspeções = 2 \r\n        // aprovar\r\n    }\r\n    \r\n    function addToPoolProducer() public {\r\n        // requer produtor aprovado\r\n        // \r\n    }\r\n    \r\n     function addToPoolActivist() public {\r\n        // requer produtor aprovado\r\n        // \r\n    }\r\n}    \r\n",
-  "sourcePath": "C:\\Users\\felip\\OneDrive\\ドキュメント\\Ionic\\SintropContract\\contracts\\SAT-pools.sol",
+  "sourcePath": "C:/Users/Breno/Desktop/Sintrop/SintropContract/contracts/SAT-pools.sol",
   "ast": {
-    "absolutePath": "project:/contracts/SAT-pools.sol",
+    "absolutePath": "/C/Users/Breno/Desktop/Sintrop/SintropContract/contracts/SAT-pools.sol",
     "exportedSymbols": {
       "Context": [
-        670
+        2939
       ],
       "ERC20": [
-        545
+        2814
       ],
       "IERC20": [
-        623
+        2892
       ],
       "IERC20Metadata": [
-        648
+        2917
       ],
       "SATdistribution": [
-        2421
+        1750
       ]
     },
-    "id": 2422,
+    "id": 1751,
     "license": "GPL-3.0-or-later",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2403,
+        "id": 1732,
         "literals": [
           "solidity",
           "^",
@@ -58,17 +56,17 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:12"
+        "src": "0:23:8"
       },
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
         "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "id": 2404,
+        "id": 1733,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 2422,
-        "sourceUnit": 546,
-        "src": "75:55:12",
+        "scope": 1751,
+        "sourceUnit": 2815,
+        "src": "75:55:8",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -79,177 +77,177 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 2421,
+        "id": 1750,
         "linearizedBaseContracts": [
-          2421
+          1750
         ],
         "name": "SATdistribution",
-        "nameLocation": "143:15:12",
+        "nameLocation": "143:15:8",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 2407,
+              "id": 1736,
               "nodeType": "Block",
-              "src": "205:112:12",
+              "src": "205:112:8",
               "statements": []
             },
-            "id": 2408,
+            "id": 1737,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "approveProducer",
-            "nameLocation": "179:15:12",
+            "nameLocation": "179:15:8",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2405,
+              "id": 1734,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "194:2:12"
+              "src": "194:2:8"
             },
             "returnParameters": {
-              "id": 2406,
+              "id": 1735,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "205:0:12"
+              "src": "205:0:8"
             },
-            "scope": 2421,
-            "src": "170:147:12",
+            "scope": 1750,
+            "src": "170:147:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "private"
           },
           {
             "body": {
-              "id": 2411,
+              "id": 1740,
               "nodeType": "Block",
-              "src": "364:112:12",
+              "src": "364:112:8",
               "statements": []
             },
-            "id": 2412,
+            "id": 1741,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "approveActivist",
-            "nameLocation": "338:15:12",
+            "nameLocation": "338:15:8",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2409,
+              "id": 1738,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "353:2:12"
+              "src": "353:2:8"
             },
             "returnParameters": {
-              "id": 2410,
+              "id": 1739,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "364:0:12"
+              "src": "364:0:8"
             },
-            "scope": 2421,
-            "src": "329:147:12",
+            "scope": 1750,
+            "src": "329:147:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "private"
           },
           {
             "body": {
-              "id": 2415,
+              "id": 1744,
               "nodeType": "Block",
-              "src": "524:58:12",
+              "src": "524:58:8",
               "statements": []
             },
             "functionSelector": "2f359df1",
-            "id": 2416,
+            "id": 1745,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addToPoolProducer",
-            "nameLocation": "497:17:12",
+            "nameLocation": "497:17:8",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2413,
+              "id": 1742,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "514:2:12"
+              "src": "514:2:8"
             },
             "returnParameters": {
-              "id": 2414,
+              "id": 1743,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "524:0:12"
+              "src": "524:0:8"
             },
-            "scope": 2421,
-            "src": "488:94:12",
+            "scope": 1750,
+            "src": "488:94:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 2419,
+              "id": 1748,
               "nodeType": "Block",
-              "src": "631:58:12",
+              "src": "631:58:8",
               "statements": []
             },
             "functionSelector": "588a9745",
-            "id": 2420,
+            "id": 1749,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addToPoolActivist",
-            "nameLocation": "604:17:12",
+            "nameLocation": "604:17:8",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2417,
+              "id": 1746,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "621:2:12"
+              "src": "621:2:8"
             },
             "returnParameters": {
-              "id": 2418,
+              "id": 1747,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "631:0:12"
+              "src": "631:0:8"
             },
-            "scope": 2421,
-            "src": "595:94:12",
+            "scope": 1750,
+            "src": "595:94:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 2422,
-        "src": "134:558:12",
+        "scope": 1751,
+        "src": "134:558:8",
         "usedErrors": []
       }
     ],
-    "src": "0:698:12"
+    "src": "0:698:8"
   },
   "legacyAST": {
-    "absolutePath": "project:/contracts/SAT-pools.sol",
+    "absolutePath": "/C/Users/Breno/Desktop/Sintrop/SintropContract/contracts/SAT-pools.sol",
     "exportedSymbols": {
       "Context": [
-        670
+        2939
       ],
       "ERC20": [
-        545
+        2814
       ],
       "IERC20": [
-        623
+        2892
       ],
       "IERC20Metadata": [
-        648
+        2917
       ],
       "SATdistribution": [
-        2421
+        1750
       ]
     },
-    "id": 2422,
+    "id": 1751,
     "license": "GPL-3.0-or-later",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2403,
+        "id": 1732,
         "literals": [
           "solidity",
           "^",
@@ -257,17 +255,17 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:12"
+        "src": "0:23:8"
       },
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
         "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "id": 2404,
+        "id": 1733,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 2422,
-        "sourceUnit": 546,
-        "src": "75:55:12",
+        "scope": 1751,
+        "sourceUnit": 2815,
+        "src": "75:55:8",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -278,159 +276,159 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 2421,
+        "id": 1750,
         "linearizedBaseContracts": [
-          2421
+          1750
         ],
         "name": "SATdistribution",
-        "nameLocation": "143:15:12",
+        "nameLocation": "143:15:8",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 2407,
+              "id": 1736,
               "nodeType": "Block",
-              "src": "205:112:12",
+              "src": "205:112:8",
               "statements": []
             },
-            "id": 2408,
+            "id": 1737,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "approveProducer",
-            "nameLocation": "179:15:12",
+            "nameLocation": "179:15:8",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2405,
+              "id": 1734,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "194:2:12"
+              "src": "194:2:8"
             },
             "returnParameters": {
-              "id": 2406,
+              "id": 1735,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "205:0:12"
+              "src": "205:0:8"
             },
-            "scope": 2421,
-            "src": "170:147:12",
+            "scope": 1750,
+            "src": "170:147:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "private"
           },
           {
             "body": {
-              "id": 2411,
+              "id": 1740,
               "nodeType": "Block",
-              "src": "364:112:12",
+              "src": "364:112:8",
               "statements": []
             },
-            "id": 2412,
+            "id": 1741,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "approveActivist",
-            "nameLocation": "338:15:12",
+            "nameLocation": "338:15:8",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2409,
+              "id": 1738,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "353:2:12"
+              "src": "353:2:8"
             },
             "returnParameters": {
-              "id": 2410,
+              "id": 1739,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "364:0:12"
+              "src": "364:0:8"
             },
-            "scope": 2421,
-            "src": "329:147:12",
+            "scope": 1750,
+            "src": "329:147:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "private"
           },
           {
             "body": {
-              "id": 2415,
+              "id": 1744,
               "nodeType": "Block",
-              "src": "524:58:12",
+              "src": "524:58:8",
               "statements": []
             },
             "functionSelector": "2f359df1",
-            "id": 2416,
+            "id": 1745,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addToPoolProducer",
-            "nameLocation": "497:17:12",
+            "nameLocation": "497:17:8",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2413,
+              "id": 1742,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "514:2:12"
+              "src": "514:2:8"
             },
             "returnParameters": {
-              "id": 2414,
+              "id": 1743,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "524:0:12"
+              "src": "524:0:8"
             },
-            "scope": 2421,
-            "src": "488:94:12",
+            "scope": 1750,
+            "src": "488:94:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 2419,
+              "id": 1748,
               "nodeType": "Block",
-              "src": "631:58:12",
+              "src": "631:58:8",
               "statements": []
             },
             "functionSelector": "588a9745",
-            "id": 2420,
+            "id": 1749,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addToPoolActivist",
-            "nameLocation": "604:17:12",
+            "nameLocation": "604:17:8",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2417,
+              "id": 1746,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "621:2:12"
+              "src": "621:2:8"
             },
             "returnParameters": {
-              "id": 2418,
+              "id": 1747,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "631:0:12"
+              "src": "631:0:8"
             },
-            "scope": 2421,
-            "src": "595:94:12",
+            "scope": 1750,
+            "src": "595:94:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 2422,
-        "src": "134:558:12",
+        "scope": 1751,
+        "src": "134:558:8",
         "usedErrors": []
       }
     ],
-    "src": "0:698:12"
+    "src": "0:698:8"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.8.11+commit.d7f03943.Emscripten.clang"
+    "version": "0.8.9+commit.e5eed63a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-07T02:43:17.778Z",
+  "schemaVersion": "3.2.3",
+  "updatedAt": "2022-01-07T13:04:13.285Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

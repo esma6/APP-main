@@ -184,7 +184,6 @@ export class DashboardLayoutComponent implements OnInit {
         },
       ]
     },
-
   ];
 
   /*  {
@@ -235,6 +234,8 @@ export class DashboardLayoutComponent implements OnInit {
     if (menu.label == 'Researcher Pool') {
       this.router.navigate([`dashboard/researcher-pool/${this.accountNumber}`])
     }
+
+
 
   }
 

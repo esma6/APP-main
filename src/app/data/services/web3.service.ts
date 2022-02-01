@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import detectEthereumProvider from '@metamask/detect-provider';
 import SintropContract from '../contracts/abis/SintropContract.json';
 import ProducerPool from '../contracts/abis/ProducerPool.json';
+import DeveloperPool from '../contracts/abis/DeveloperPool.json';
 import SATtoken from '../contracts/abis/SatTokenERC20.json';
 import { ProducerModel } from '../models/producerModel';
 import { EventService } from './event.service';
@@ -21,6 +22,7 @@ export class Web3Service {
   account: any;
   sintropContract: any;
   producerPoolContract: any;
+  developerPoolContract: any;
   accDetails: any;
   SATContract: any;
 
@@ -69,9 +71,11 @@ export class Web3Service {
 
     const sintropContract: any = SintropContract;
     const _producerPoolContract: any = ProducerPool;
+    const _developerContract: any = DeveloperPool;
     const _SATContract: any = SATtoken;
     const netWorkData = sintropContract.networks[networkId];
     const _producerPoolNetwork = _producerPoolContract.networks[networkId];
+    const _developerContractNetwork = _developerContract.networks[networkId];
     const _satTokensNetwork = _SATContract.networks[networkId];
 
     if (netWorkData) {
@@ -83,6 +87,11 @@ export class Web3Service {
       this.producerPoolContract = await new this.web3js.eth.Contract(
         _producerPoolContract.abi,
         _producerPoolNetwork.address
+      );
+
+      this.developerPoolContract = await new this.web3js.eth.Contract(
+        _developerContract.abi,
+        _developerContractNetwork.address
       );
 
       this.SATContract = await new this.web3js.eth.Contract(
@@ -366,7 +375,7 @@ export class Web3Service {
 
   public async getInspectionsHistory() {
     const inspections = await this.sintropContract.methods
-      .getInspectionsHistory(this.account[0])
+      .getInspectionsHistory()
       .call()
       .then((e: any) => {
         console.log(e);
@@ -479,6 +488,203 @@ export class Web3Service {
     return approveWith;
   }
 
+  public async addContractPool(_fundAddress:any,_numTokens:any) {
+    const _addContractPool = await this.SATContract.methods
+      .addContractPool( _fundAddress,  _numTokens)
+      .send({ from: this.account[0] })
+      .on(
+        'transactionHash',
+        (hash: any) => {
+          if (hash) {
+            return hash;
+          } else {
+            return false;
+          }
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+
+    return _addContractPool;
+  }
+
+
+  public async addDeveloper(address:any) {
+    const _developerPoolContract = await this.developerPoolContract.methods
+      .addDeveloper(address)
+      .send({ from: this.account[0] })
+      .on(
+        'transactionHash',
+        (hash: any) => {
+          if (hash) {
+            return hash;
+          } else {
+            return false;
+          }
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+
+    return _developerPoolContract;
+  }
+
+  public async aproveDevTokens() {
+
+    const _developerPoolContract = await this.developerPoolContract.methods
+      .approve()
+      .send({ from: this.account[0] })
+      .on(
+        'transactionHash',
+        (hash: any) => {
+          if (hash) {
+            return hash;
+          } else {
+            return false;
+          }
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+
+    return _developerPoolContract;
+  }
+
+
+
+  public async allowanceDevTokens() {
+
+    const allowance = await this.developerPoolContract.methods
+      .allowance()
+      .call()
+      .then((e: any) => {
+        return e;
+      });
+
+    return allowance;
+  }
+
+
+
+  public async nextApproveTime() {
+
+    const nextApproveTime = await this.developerPoolContract.methods
+      .nextApproveTime()
+      .call()
+      .then((e: any) => {
+        return e;
+      });
+
+    return nextApproveTime;
+  }
+
+
+  public async withDrawDevTokens() {
+
+    const _developerPoolContract = await this.developerPoolContract.methods
+      .withDraw()
+      .send({ from: this.account[0] })
+      .on(
+        'transactionHash',
+        (hash: any) => {
+          if (hash) {
+            return hash;
+          } else {
+            return false;
+          }
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+
+    return _developerPoolContract;
+  }
+
+  public async currentContractEra() {
+    const currentContractEra = await this.developerPoolContract.methods
+      .currentContractEra()
+      .call()
+      .then((e: any) => {
+        return e;
+      });
+
+    return currentContractEra;
+  }
+
+
+  public async getDevelopersAddress() {
+    const getDeveloper = await this.developerPoolContract.methods
+      .getDevelopersAddress()
+      .call()
+      .then((e: any) => {
+        return e;
+      });
+
+    return getDeveloper;
+  }
+
+
+
+  public async addDevLevel(address:any) {
+    console.log(this.account[0] )
+
+    const _developerPoolContract = await this.developerPoolContract.methods
+      .addLevel(address)
+      .send({ from: this.account[0] })
+      .on(
+        'transactionHash',
+        (hash: any) => {
+          if (hash) {
+            return hash;
+          } else {
+            return false;
+          }
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+
+    return _developerPoolContract;
+  }
+
+  public async undoDevLevel(address:any) {
+    console.log(this.account[0] )
+
+    const _developerPoolContract = await this.developerPoolContract.methods
+      .undoLevel(address)
+      .send({ from: this.account[0] })
+      .on(
+        'transactionHash',
+        (hash: any) => {
+          if (hash) {
+            return hash;
+          } else {
+            return false;
+          }
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+
+    return _developerPoolContract;
+  }
+
+  public async getDeveloper(address:any) {
+    const getDeveloper = await this.developerPoolContract.methods
+      .getDeveloper(address)
+      .call()
+      .then((e: any) => {
+        return e;
+      });
+
+    return getDeveloper;
+  }
 
   public async totalSupply() {
     const totalSupply = await this.SATContract.methods

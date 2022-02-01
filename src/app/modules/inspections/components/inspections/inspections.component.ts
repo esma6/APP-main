@@ -41,7 +41,7 @@ export class InspectionsComponent implements OnInit {
       disabled: () => !this.web3.account || this.userType == 2,
     },
     {
-      label: 'Request New Inspection',
+      label: 'Create New Inspection',
       action: this.addInspections.bind(this),
       icon: 'po-icon-change',
       disabled: () => !this.web3.account || this.userType == 2,
@@ -87,6 +87,7 @@ export class InspectionsComponent implements OnInit {
     action: () => {
       this.resultInspectModalClose();
     },
+
   };
 
   public readonly acceptInspectCancelAction: PoModalAction = {

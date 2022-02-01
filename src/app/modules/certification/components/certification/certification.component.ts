@@ -49,7 +49,6 @@ export class CertificationComponent implements OnInit {
   ];
   inspections: any;
   isaScore: number = 0;
-
   constructor(
     private route: ActivatedRoute,
     private poNotification: PoNotificationService,
@@ -146,9 +145,12 @@ export class CertificationComponent implements OnInit {
     this.poNotification.success('Email sent successfully!')
   }
 
+
+
   getInspectionsHistory() {
     let isaScore = 0;
     this.web3.getInspectionsHistory().then((res) => {
+
       this.inspections = res.map((item: any) =>
         Object.assign({}, item, {
           date: new Date(item.createdAt * 1000).toLocaleDateString('pt-Br'),

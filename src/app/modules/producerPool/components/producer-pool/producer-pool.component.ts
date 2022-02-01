@@ -21,6 +21,7 @@ export class ProducerPoolComponent implements OnInit {
   accountRole!: string;
   totalSat: any;
   balanceOfValue: any;
+  poolAddress: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -121,5 +122,14 @@ export class ProducerPoolComponent implements OnInit {
 
   async notificationAlertSuccess(msg: string) {
     await this.poNotification.success({ message: msg, duration: 3000 });
+  }
+
+  saveContract(){
+    console.log( this.poolAddress)
+
+    this.web3.addContractPool(this.poolAddress,'750000000000000000000000000').then((res)=>{
+      console.log(res)
+    })
+
   }
 }

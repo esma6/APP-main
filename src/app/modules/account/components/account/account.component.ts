@@ -56,6 +56,7 @@ export class AccountComponent implements OnInit {
   ];
   inpectionAccount: any;
   categories: any;
+  poolAddress: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -92,6 +93,10 @@ export class AccountComponent implements OnInit {
             case '0':
               console.log('new register');
               this.router.navigate(['dashboard/register']);
+
+              if (res.totalInspections !== '0' ) {
+                this.getInspectionsHistory();
+              }
               break;
 
             case '1':
@@ -102,17 +107,24 @@ export class AccountComponent implements OnInit {
                 this.accountDetails = res;
 
                 this.loadingAccount = false;
-                this.getInspectionsHistory();
+
+                if (res.totalInspections !== '0' ) {
+                  this.getInspectionsHistory();
+                }
               });
               break;
 
             case '2':
               this.web3.getActivist().then((res) => {
+                console.log(res)
                 this.accountRole = 'Activist';
                 this.accountDetails = res;
                 this.loadingAccount = false;
 
-                this.getInspectionsHistory();
+
+                if (res.totalInspections !== '0' ) {
+                  this.getInspectionsHistory();
+                }
               });
               break;
           }
@@ -199,4 +211,6 @@ export class AccountComponent implements OnInit {
       this.categories = res;
     });
   }
+
+
 }

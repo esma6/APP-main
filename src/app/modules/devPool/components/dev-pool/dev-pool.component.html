@@ -1,4 +1,4 @@
-<po-loading-overlay *ngIf="loadingDeveloperPool" p-text="Loading">
+<po-loading-overlay *ngIf="loadingDeveloperPool" p-text="Carregando">
 </po-loading-overlay>
 
 <po-page-default
@@ -7,25 +7,55 @@
   [p-breadcrumb]="breadcrumb"
 >
   <po-container>
+    <!-- modal para inserir dev-->
+    <po-modal #modal p-title="Add Developer">
+      <po-input name="input" p-label="Contract Add" [(ngModel)]="developerAdd">
+      </po-input>
+      <po-button p-label="Add Developer" (p-click)="addDeveloper()">
+      </po-button>
+    </po-modal>
+
+    <po-button p-label="Register Dev" (p-click)="modal.open()"> </po-button>
+
+    <!--Fim modal para registrar dev-->
+    <!-- modal para inserir contrato do devPool-->
+    <po-modal #modalDevPool p-title="DevPool Contract">
+      <po-input
+        name="input"
+        p-label="Insert Contract Address"
+        [(ngModel)]="poolAddress"
+      >
+      </po-input>
+      <po-button p-label="Save Contract" (p-click)="saveContract()">
+      </po-button>
+    </po-modal>
+
+    <po-button class="po-ml-2" p-label="Register Dev Pool Contract" (p-click)="modalDevPool.open()"> </po-button>
+
+    <!--Fim modal para inserir contrato do devPool-->
+
     <div class="po-row">
       <div class="po-row po-mt-2">
-        <po-widget class="po-lg-4 po-mb-1" p-title="TOTAL SAT">
-          <div class="po-font-subtitle po-text-center">0</div>
-          <div class="po-text-center">Total earned</div>
+        <po-widget class="po-lg-4 po-mb-1" p-title="My Era">
+          <div class="po-font-subtitle po-text-center">
+            {{ developerAccount?.currentEra }}
+          </div>
         </po-widget>
 
         <po-widget
           class="po-lg-4 po-mb-1"
-          p-title="TOTAL SAT"
+          p-title="My Level"
           [p-primary]="true"
         >
-          <div class="po-font-subtitle po-text-center">0</div>
-          <div class="po-text-center">Pending</div>
+          <div class="po-font-subtitle po-text-center">
+            {{ developerAccount?.level }}
+          </div>
         </po-widget>
 
-        <po-widget class="po-lg-4 po-mb-1" p-title="TOTAL SAT">
-          <div class="po-font-subtitle po-text-center">0</div>
-          <div class="po-text-center">Tokens Cleared</div>
+        <po-widget class="po-lg-4 po-mb-1" p-title="Allowance">
+          <div class="po-font-subtitle po-text-center">
+            {{ developerAccount?.allowance }}
+          </div>
         </po-widget>
       </div>
     </div>
@@ -34,45 +64,56 @@
 
     <div class="po-row">
       <po-container
-        class="
-          po-lg-6 po-xl-6 po-md-6 po-offset-xl-3 po-offset-md-3 po-offset-lg-3
-        "
+        class="po-lg-6 po-xl-6 po-md-6 po-offset-xl-3 po-offset-md-3 po-offset-lg-3"
       >
         <h2 class="po-mb-2">Developer Pool</h2>
         <po-info
           p-label="Total pool SAT"
           class="col-lg-12"
-          p-value="100.000.000.00"
+          [p-value]="totalSupply"
         >
         </po-info>
         <br />
         <po-info
-          p-label="Reward per block"
+          p-label="Current ERA"
           class="col-lg-12 po-mb-2"
-          p-value="100"
+          [p-value]="_currentContractEra"
         >
-        </po-info>
-        <br />
-        <po-info p-label="Number of Developers" class="col-lg-12" p-value="50">
         </po-info>
         <br />
         <po-info
-          p-label="Average Sustenainability Score"
+          p-label="Number of Developers"
           class="col-lg-12"
-          p-value="10"
+          [p-value]="devsAcc?.length"
         >
         </po-info>
         <br />
-        <po-info p-label="Your Earning" class="col-lg-12 color" p-value="100">
+        <po-info
+          p-label="Next ApproveTime"
+          class="col-lg-12 color"
+          [p-value]="_nextApproveTime"
+        >
         </po-info>
 
         <div class="po-row po-mt-2">
           <div class="po-col-4 po-offset-xl-4 po-offset-md-4 po-offset-lg-4">
-            <po-button p-label="Call" p-type="primary"> </po-button>
+            <po-button
+              p-label="Aprove"
+              p-type="primary"
+              (click)="aprove()"
+              [p-disabled]="!developerAccount"
+            >
+            </po-button>
           </div>
 
           <div class="po-ml-5 po-col-4">
-            <po-button p-label="Withdraw" p-type="primary"> </po-button>
+            <po-button
+              p-label="Withdraw"
+              p-type="primary"
+              (click)="withDraw()"
+              [p-disabled]="!developerAccount"
+            >
+            </po-button>
           </div>
         </div>
       </po-container>
@@ -80,20 +121,29 @@
 
     <hr />
 
-    <h2>History of calls</h2>
+    <h2>Registered Devs</h2>
     <po-list-view
-      p-property-title="name"
-      [p-items]="[
-        { name: 'User 1', userWallet: '0XB918E0A26A3365B97E3A7F751307CA6F0D23E324' },
-        { name: 'User 2', userWallet: '0XB918E0A26A3365B97E3A7F751307CA6F0D23E324' }
-      ]"
+      p-property-title="_address"
+      [p-items]="devsAcc"
+      [p-actions]="actionsDev"
     >
       <ng-template p-list-view-content-template let-item>
         <div class="po-row">
           <po-info
-            class="po-md-12"
-            p-label="User Wallet"
-            [p-value]="item.userWallet"
+            class="po-md-4"
+            p-label="Created At"
+            [p-value]="item.createdAtDate"
+          ></po-info>
+          <po-info
+            class="po-md-4"
+            p-label="Current ERA"
+            [p-value]="item.currentEra"
+          ></po-info>
+
+          <po-info
+            class="po-md-4"
+            p-label="Level"
+            [p-value]="item.level"
           ></po-info>
         </div>
       </ng-template>

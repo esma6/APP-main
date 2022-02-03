@@ -88,7 +88,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity >=0.7.0 <=0.9.0;\r\n// SPDX-License-Identifier: GPL-3.0-or-later\r\n\r\nimport \"./PoolInterface.sol\";\r\n\r\ninterface SintropInterface {\r\n    function getProducerApprove(address delegate) external view returns(uint);\r\n}\r\n\r\ninterface SatTokenInterface {\r\n    function allowance(address owner, address delegate) external view returns(uint);\r\n    function approveWith(address delegate, uint numTokens) external returns(uint);\r\n    function transferFrom(address owner, address to, uint numTokens) external returns(bool);\r\n}\r\n\r\ncontract ProducerPool is PoolInterface {\r\n    SatTokenInterface satToken;\r\n    SintropInterface sintrop;\r\n\r\n    constructor(address satTokenAddress, address sintropAddress) {\r\n        satToken = SatTokenInterface(satTokenAddress);\r\n        sintrop = SintropInterface(sintropAddress);\r\n    }\r\n\r\n    function approve() public override returns(bool) {\r\n        uint numTokens = sintrop.getProducerApprove(msg.sender);\r\n\r\n        satToken.approveWith(msg.sender, numTokens);\r\n        return true;\r\n    }\r\n\r\n    function withDraw() public override returns(bool){\r\n        satToken.transferFrom(address(this), msg.sender, allowance()); \r\n        return true;\r\n    }\r\n\r\n    function allowance() public view override returns (uint) {\r\n        return satToken.allowance(address(this), msg.sender);\r\n    }\r\n}",
-  "sourcePath": "C:\\Users\\felip\\OneDrive\\ドキュメント\\Ionic\\SintropContract\\contracts\\ProducerPool.sol",
+  "sourcePath": "C:\\Users\\Breno\\Desktop\\Sintrop\\SintropContract\\contracts\\ProducerPool.sol",
   "ast": {
     "absolutePath": "project:/contracts/ProducerPool.sol",
     "exportedSymbols": {
@@ -3440,8 +3440,8 @@
     "version": "0.8.11+commit.d7f03943.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-31T19:53:36.682Z",
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-01-31T20:39:34.390Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

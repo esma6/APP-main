@@ -159,4 +159,10 @@ export class DevPoolComponent implements OnInit {
       this._nextApproveTime =res
     });
   }
+
+  getBalanceOf(){
+    this.web3.balanceOf(this.poolAddress).then((res)=>{
+      console.log(res)
+    })
+  }
 }

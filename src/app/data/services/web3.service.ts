@@ -569,6 +569,8 @@ export class Web3Service {
 
 
 
+
+
   public async nextApproveTime() {
 
     const nextApproveTime = await this.developerPoolContract.methods
@@ -697,9 +699,18 @@ export class Web3Service {
     return totalSupply;
   }
 
-  public async balanceOf() {
+  public async balanceOf(address?:any) {
+
+    let account;
+
+    if(address){
+      account = address
+    }else{
+      account = this.account[0]
+    }
+
     const balanceOf = await this.SATContract.methods
-      .balanceOf(this.account[0])
+      .balanceOf(account)
       .call()
       .then((e: any) => {
         return e;

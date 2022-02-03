@@ -41,7 +41,7 @@ export class InspectionsComponent implements OnInit {
       disabled: () => !this.web3.account || this.userType == 2,
     },
     {
-      label: 'Create New Inspection',
+      label: 'Request New Inspection',
       action: this.addInspections.bind(this),
       icon: 'po-icon-change',
       disabled: () => !this.web3.account || this.userType == 2,

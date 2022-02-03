@@ -1492,7 +1492,7 @@
   "sourceMap": "214:919:17:-:0;;;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "214:919:17:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;977:153;1077:45;;;;;;;;;;;;-1:-1:-1;;;1077:45:17;;;;;;;;;;;;;;;;;;-1:-1:-1;;;1077:45:17;;;;;;;;;;;;;;-1:-1:-1;;;1077:45:17;;;;;;;977:153;;;;1077:45;977:153;:::i;:::-;;;;;;;;351:22;;;;;;;;;1188:25:18;;;1176:2;1161:18;351:22:17;1042:177:18;804:98:17;;;;;;:::i;:::-;-1:-1:-1;;;;;883:11:17;855:8;883:11;;;;;;;;;;;;;;804:98;;;;;;;;:::i;14:472:18:-;56:3;94:5;88:12;121:6;116:3;109:19;146:1;156:162;170:6;167:1;164:13;156:162;;;232:4;288:13;;;284:22;;278:29;260:11;;;256:20;;249:59;185:12;156:162;;;336:6;333:1;330:13;327:87;;;402:1;395:4;386:6;381:3;377:16;373:27;366:38;327:87;-1:-1:-1;468:2:18;447:15;-1:-1:-1;;443:29:18;434:39;;;;475:4;430:50;;14:472;-1:-1:-1;;14:472:18:o;491:546::-;736:2;725:9;718:21;699:4;762:45;803:2;792:9;788:18;780:6;762:45;:::i;:::-;855:9;847:6;843:22;838:2;827:9;823:18;816:50;889:33;915:6;907;889:33;:::i;:::-;875:47;;970:9;962:6;958:22;953:2;942:9;938:18;931:50;998:33;1024:6;1016;998:33;:::i;:::-;990:41;491:546;-1:-1:-1;;;;;;491:546:18:o;1224:286::-;1283:6;1336:2;1324:9;1315:7;1311:23;1307:32;1304:52;;;1352:1;1349;1342:12;1304:52;1378:23;;-1:-1:-1;;;;;1430:31:18;;1420:42;;1410:70;;1476:1;1473;1466:12;1410:70;1499:5;1224:286;-1:-1:-1;;;1224:286:18:o;1515:341::-;1660:2;1645:18;;1693:1;1682:13;;1672:144;;1738:10;1733:3;1729:20;1726:1;1719:31;1773:4;1770:1;1763:15;1801:4;1798:1;1791:15;1672:144;1825:25;;;1515:341;:::o",
   "source": "pragma solidity >=0.5.0 <=0.9.0;\r\n// SPDX-License-Identifier: GPL-3.0-or-later\r\n\r\n\r\n/**\r\n* @title UserContract\r\n* @dev This contract work as a centralized user's system, where all users has your userType here\r\n*/\r\ncontract UserContract {\r\n    enum UserType { UNDEFINED, PRODUCER, ACTIVIST, RESEARCHER }\r\n\r\n    mapping(address => UserType) users;\r\n    uint public usersCount;\r\n\r\n    /**\r\n   * @dev Add new user in the system\r\n   * @param addr The address of the user\r\n   * @param userType The type of the user - enum UserType\r\n   */\r\n    function addUser(address addr, UserType userType) internal {\r\n        users[addr] = userType;\r\n        usersCount++;\r\n    }\r\n\r\n    /**\r\n   * @dev Returns the user type if the user is registered\r\n   * @param addr the user address that want check if exists\r\n   */\r\n    function getUser(address addr) public view returns(UserType) {\r\n        return users[addr];\r\n    }\r\n\r\n    /**\r\n   * @dev Returns the enum UserType of the system\r\n   */\r\n    function getUserTypes() public pure returns(string memory, string memory, string memory) {\r\n        return (\"PRODUCER\", \"ACTIVIST\", \"RESEARCHER\");\r\n    }\r\n}",
-  "sourcePath": "C:\\Users\\felip\\OneDrive\\ドキュメント\\Ionic\\SintropContract\\contracts\\UserContract.sol",
+  "sourcePath": "C:\\Users\\Breno\\Desktop\\Sintrop\\SintropContract\\contracts\\UserContract.sol",
   "ast": {
     "absolutePath": "project:/contracts/UserContract.sol",
     "exportedSymbols": {
@@ -2926,8 +2926,8 @@
     "version": "0.8.11+commit.d7f03943.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-31T19:53:36.813Z",
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-01-31T20:39:34.543Z",
   "devdoc": {
     "details": "This contract work as a centralized user's system, where all users has your userType here",
     "kind": "dev",

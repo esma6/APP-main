@@ -1,4 +1,4 @@
-<po-loading-overlay *ngIf="loadingDeveloperPool" p-text="Carregando">
+<po-loading-overlay *ngIf="loadingDeveloperPool" p-text="Loading">
 </po-loading-overlay>
 
 <po-page-default
@@ -33,6 +33,24 @@
     <po-button class="po-ml-2" p-label="Register Dev Pool Contract" (p-click)="modalDevPool.open()"> </po-button>
 
     <!--Fim modal para inserir contrato do devPool-->
+
+       <!-- modal para inserir contrato do devPool-->
+       <po-modal #modalDevPoolBalance p-title="Get Balance Of">
+        <po-input
+          name="input"
+          p-label="Get balance of"
+          [(ngModel)]="poolAddress"
+        >
+        </po-input>
+        <po-button p-label="Get balance" (p-click)="getBalanceOf()">
+        </po-button>
+      </po-modal>
+
+      <po-button class="po-ml-2" p-label="Get Balance Of" (p-click)="modalDevPoolBalance.open()"> </po-button>
+
+      <!--Fim modal para inserir contrato do devPool-->
+
+
 
     <div class="po-row">
       <div class="po-row po-mt-2">

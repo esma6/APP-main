@@ -25,7 +25,7 @@
   "sourceMap": "134:558:13:-:0;;;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "134:558:13:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;488:94;",
   "source": "pragma solidity ^0.8.0;\r\n// SPDX-License-Identifier: GPL-3.0-or-later\r\n\r\n\r\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\r\n\r\ncontract SATdistribution {\r\n\r\n\r\n    function approveProducer() private {\r\n        // requer average ISA > 10 \r\n        // requer mínimo de inspeções = 2 \r\n        // aprovar\r\n    }\r\n    \r\n    function approveActivist() private {\r\n        // requer average ISA > 10 \r\n        // requer mínimo de inspeções = 2 \r\n        // aprovar\r\n    }\r\n    \r\n    function addToPoolProducer() public {\r\n        // requer produtor aprovado\r\n        // \r\n    }\r\n    \r\n     function addToPoolActivist() public {\r\n        // requer produtor aprovado\r\n        // \r\n    }\r\n}    \r\n",
-  "sourcePath": "C:\\Users\\felip\\OneDrive\\ドキュメント\\Ionic\\SintropContract\\contracts\\SAT-pools.sol",
+  "sourcePath": "C:\\Users\\Breno\\Desktop\\Sintrop\\SintropContract\\contracts\\SAT-pools.sol",
   "ast": {
     "absolutePath": "project:/contracts/SAT-pools.sol",
     "exportedSymbols": {
@@ -429,8 +429,8 @@
     "version": "0.8.11+commit.d7f03943.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-31T19:53:36.758Z",
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-01-31T20:39:34.485Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

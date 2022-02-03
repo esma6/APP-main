@@ -50,7 +50,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity >=0.7.0 <=0.9.0;\r\n// SPDX-License-Identifier: GPL-3.0-or-later\r\n\r\ninterface PoolInterface {\r\n    function approve() external  returns(bool);\r\n    function withDraw() external returns(bool);\r\n    function allowance() external view returns (uint);\r\n}",
-  "sourcePath": "C:\\Users\\felip\\OneDrive\\ドキュメント\\Ionic\\SintropContract\\contracts\\PoolInterface.sol",
+  "sourcePath": "C:\\Users\\Breno\\Desktop\\Sintrop\\SintropContract\\contracts\\PoolInterface.sol",
   "ast": {
     "absolutePath": "project:/contracts/PoolInterface.sol",
     "exportedSymbols": {
@@ -482,8 +482,8 @@
     "version": "0.8.11+commit.d7f03943.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.3",
-  "updatedAt": "2022-01-31T19:53:36.719Z",
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-01-31T20:39:34.446Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

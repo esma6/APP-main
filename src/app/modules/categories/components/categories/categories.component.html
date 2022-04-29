@@ -1,0 +1,90 @@
+<po-loading-overlay *ngIf="loadingCategories" p-text="Loading">
+</po-loading-overlay>
+
+<po-page-default
+p-title="Sustainable Agriculture Index"
+  [p-breadcrumb]="breadcrumb"
+  [p-actions]="actions"
+>
+
+
+
+  <po-container class="po-lg-12">
+    <po-info p-label="Categories" p-value=""> </po-info>
+    <po-table
+      [p-auto-collapse]="true"
+      [p-hide-detail]="false"
+      [p-sort]="true"
+      [p-striped]="true"
+      [p-columns]="columns"
+      [p-items]="items"
+      [p-actions]="TableActions"
+      (p-collapsed)="onCollapseDetail()"
+      (p-expanded)="onExpandDetail()"
+    >
+    </po-table>
+  </po-container>
+</po-page-default>
+
+<po-modal
+p-title="Create Category"
+  [p-primary-action]="createAction"
+  [p-secondary-action]="cancelAction"
+>
+  <form #formCategory="ngForm">
+    <po-input
+      name="categoryName"
+      p-label="Category Name"
+      [(ngModel)]="categoryName"
+      p-required
+    >
+    </po-input>
+    <po-input
+      name="categoryDescriptio"
+      p-label="Category Description"
+      [(ngModel)]="categoryDescriptio"
+      p-required
+    >
+    </po-input>
+    <po-input
+      name="totallySustainable"
+      p-label="Totally Sustainable"
+      [(ngModel)]="totallySustainable"
+      p-required
+    >
+    </po-input>
+    <po-input
+      name="partiallySustainable"
+      p-label="Partially Sustainable"
+      [(ngModel)]="partiallySustainable"
+      p-required
+    >
+    </po-input>
+    <po-input name="neutro" p-label="Neutro" [(ngModel)]="neutro" p-required>
+    </po-input>
+    <po-input
+      name="partiallyNotSustainable"
+      p-label="Partially Not Sustainable"
+      [(ngModel)]="partiallyNotSustainable"
+      p-required
+    >
+    </po-input>
+    <po-input
+      name="totallyNotSustainable"
+      p-label="Totally Not Sustainable"
+      [(ngModel)]="totallyNotSustainable"
+      p-required
+    >
+    </po-input>
+  </form>
+</po-modal>
+
+<po-modal #voteModal p-title="Vote"
+[p-primary-action]="createVote"
+  [p-secondary-action]="voteCancelAction"
+  p-size="sm">
+
+  <h2>Want to add vote to category: {{this.selectedCategory?.name}}</h2>
+</po-modal>
+
+

@@ -1,0 +1,63 @@
+<po-loading-overlay *ngIf="loadingInspection" p-text="Loading">
+</po-loading-overlay>
+
+
+<po-page-default
+p-title="Accepted Inspection"
+  [p-breadcrumb]="breadcrumb"
+
+>
+
+
+<po-container class="po-lg-12">
+  <po-table
+    [p-auto-collapse]="true"
+    [p-hide-detail]="false"
+    [p-sort]="true"
+    [p-striped]="true"
+    [p-columns]="columns"
+    [p-items]="items"
+    [p-actions]="TableActions"
+  >
+  </po-table>
+</po-container>
+
+</po-page-default>
+
+<po-modal #realizeInspectModal   p-title="
+Scoring the Categories"
+[p-primary-action]="realizeInspectionAction"
+  [p-secondary-action]="realizeInspectCancelAction"
+  p-size="sm">
+
+
+
+  <po-list-view
+  p-property-title="name"
+  [p-items]="categories"
+>
+  <ng-template p-list-view-content-template let-item>
+    <div class="po-row">
+      <po-info class="po-md-6" p-label="Descrição" [p-value]="item.description"></po-info>
+
+        <po-select class="po-md-6" [p-required]="true" #selection
+        (p-change)="selectISA($event,item)"
+        name="select"
+        p-label="ISA"
+        [p-options]="[
+          { label: 'Totally Sustainable', value: '0' },
+          { label: 'Partially Sustainable', value: '1' },
+          { label: 'Neutro', value: '2' },
+          { label: 'Partially Not Sustainable', value: '3' },
+          { label: 'Totally Not Sustainable', value: '4' }
+        ]"
+      >
+      </po-select>
+
+
+
+    </div>
+  </ng-template>
+</po-list-view>
+
+</po-modal>

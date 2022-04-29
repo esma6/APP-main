@@ -1,0 +1,100 @@
+<po-loading-overlay *ngIf="loadingProducerPool" p-text="Loading">
+</po-loading-overlay>
+
+<po-page-default
+  *ngIf="accountDetails"
+  [p-title]="'Producer Pool'"
+  [p-breadcrumb]="breadcrumb"
+>
+  <po-container>
+    <div class="po-row">
+      <div class="po-row po-mt-2">
+        <po-widget class="po-lg-4 po-mb-1" p-title="Withdrawn Amount">
+          <div class="po-font-subtitle po-text-center">0</div>
+      <!--  <div class="po-text-center">Withdrawn Amount</div>-->
+        </po-widget>
+
+        <po-widget
+          class="po-lg-4 po-mb-1"
+          p-title="Available To Withdrawn"
+          [p-primary]="true"
+        >
+          <div class="po-font-subtitle po-text-center">{{accountDetails.tokenApprove.allowed}}</div>
+
+        </po-widget>
+
+        <po-widget class="po-lg-4 po-mb-1" p-title="Tokens Earned">
+          <div class="po-font-subtitle po-text-center">{{balanceOfValue}}</div>
+        </po-widget>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="po-row">
+      <po-container
+        class="
+          po-lg-6 po-xl-6 po-md-6 po-offset-xl-3 po-offset-md-3 po-offset-lg-3
+        "
+      >
+        <h2 class="po-mb-2">Producer Pool</h2>
+        <po-info
+          p-label="Total pool SAT"
+          class="col-lg-12"
+          [p-value]= totalSat
+        >
+        </po-info>
+        <br />
+        <po-info
+          p-label="Reward per block"
+          class="col-lg-12 po-mb-2"
+          p-value="2000"
+        >
+        </po-info>
+        <br />
+        <po-info p-label="Number of Producers" class="col-lg-12" p-value="50">
+        </po-info>
+        <br />
+        <po-info
+          p-label="Average Sustenainability Score"
+          class="col-lg-12"
+          [p-value]=accountDetails?.isaPoints
+        >
+        </po-info>
+        <br />
+        <po-info p-label="Your Earning" class="col-lg-12 color" [p-value]=accountDetails?.tokenApprove.allowed>
+        </po-info>
+
+        <div class="po-row po-mt-2">
+          <div class="po-col-4 po-offset-xl-4 po-offset-md-4 po-offset-lg-4">
+            <po-button p-label="Call" p-type="primary" (click)="aprove()" > </po-button>
+          </div>
+
+          <div class="po-ml-5 po-col-4">
+            <po-button p-label="Withdraw" p-type="primary" (click)="withdraw()" > </po-button>
+          </div>
+        </div>
+      </po-container>
+    </div>
+
+    <hr />
+
+    <h2>History of calls</h2>
+    <po-list-view
+      p-property-title="name"
+      [p-items]="[
+        { name: 'User 1', userWallet: '0XB918E0A26A3365B97E3A7F751307CA6F0D23E324' },
+        { name: 'User 2', userWallet: '0XB918E0A26A3365B97E3A7F751307CA6F0D23E324' }
+      ]"
+    >
+      <ng-template p-list-view-content-template let-item>
+        <div class="po-row">
+          <po-info
+            class="po-md-12"
+            p-label="User Wallet"
+            [p-value]="item.userWallet"
+          ></po-info>
+        </div>
+      </ng-template>
+    </po-list-view> </po-container
+></po-page-default>

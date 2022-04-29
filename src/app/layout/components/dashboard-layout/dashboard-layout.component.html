@@ -1,0 +1,52 @@
+<div class="po-wrapper">
+  <po-toolbar p-title="{{accountNumber?'Account:' + accountNumber:''}}"
+  [p-actions-icon]="actionsIcon"
+  [p-profile]="profile"
+  [p-profile-actions]="profileActions"
+ ><h1></h1></po-toolbar>
+
+  <po-menu  [p-menus]="menus">
+    <div *p-menu-header-template class="po-p-2 po-font-title sample-menu-header-text-color">
+    <img src="../../../../assets/img/262543420-sintrop-logo-com-degrade.png" alt="sintropLogo" width="100px">
+    </div>
+  </po-menu>
+  <router-outlet></router-outlet>
+</div>
+
+<ng-template #iconTemplate>
+ <img src="../../../../assets/img/263926603-6.png" alt="" width="25px">
+</ng-template>
+
+
+<ng-template #iconTemplate1>
+  <img src="../../../../assets/img/263926582-4.png" alt="" width="25px">
+ </ng-template>
+
+<ng-template #iconTemplate2>
+  <img src="../../../../assets/img/263926589-5.png" alt="" width="25px">
+ </ng-template>
+
+ <ng-template #iconTemplate3>
+  <img src="../../../../assets/img/263926618-8.png" alt="" width="25px">
+ </ng-template>
+
+ <ng-template #iconTemplate4>
+  <img src="../../../../assets/img/263926692-20.png" alt="" width="25px">
+ </ng-template>
+
+
+ <ng-template #iconTemplate5>
+  <img src="../../../../assets/img/263926648-13.png" alt="" width="25px">
+ </ng-template>
+
+ <ng-template #iconTemplate6>
+  <img src="../../../../assets/img/263926557-1.png" alt="" width="25px">
+ </ng-template>
+
+ <ng-template #iconTemplate7>
+  <img src="../../../../assets/img/263926606-7.png" alt="" width="25px">
+ </ng-template>
+
+ <ng-template #iconTemplate8>
+  <img src="../../../../assets/img/263926638-12.png" alt="" width="25px">
+ </ng-template>

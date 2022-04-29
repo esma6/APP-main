@@ -1,0 +1,253 @@
+<po-loading-overlay *ngIf="loadingCertificate" p-text="Loading">
+</po-loading-overlay>
+
+<po-page-default
+  *ngIf="accountDetails"
+  [p-title]="accountRole + ' Account'"
+  [p-breadcrumb]="breadcrumb"
+  ><div>
+    <po-container class="po-lg-10 po-xl-10 po-offset-lg-1 po-offset-xl-1 mb-2">
+
+  <div class="po-row po-mb-4">
+    <div class="po-ml-1 po-col-3">
+      <po-button p-label="Copy URL" (p-click)="copyUrl()"> </po-button>
+    </div>
+
+    <div class="po-ml-4">
+      <po-button p-label="Download Image" (p-click)="saveImage()">
+      </po-button>
+    </div>
+
+    <div class="po-ml-4">
+      <po-button
+        p-label="Receive by E-mail"
+        (p-click)="sendCertificateByEmail()"
+      >
+      </po-button>
+    </div>
+  </div>
+      <div id="Certificate" #Certificate style="background-color: white">
+        <h4 class="po-ml-1">
+          <b>{{ accountRole == "Producer" ? "PRODUCER" : "ACTIVIST" }}:</b>
+        </h4>
+        <div class="po-row">
+          <po-info
+            class="po-lg-6"
+            p-label="Name"
+            [p-value]="accountDetails.name"
+          >
+          </po-info>
+          <div class="po-lg-6">
+            <po-info
+              p-label="Address"
+              class="col-lg-12"
+              [p-value]="
+                accountRole == 'Producer'
+                  ? accountDetails.property_address.city +
+                    ' - ' +
+                    accountDetails.property_address.state +
+                    ', ' +
+                    accountDetails.property_address.country
+                  : accountDetails.activistAddress.city +
+                    ' - ' +
+                    accountDetails.activistAddress.state +
+                    ', ' +
+                    accountDetails.activistAddress.country
+              "
+            >
+            </po-info>
+
+            <po-info
+              class="col-lg-12"
+              [p-value]="
+                accountRole == 'Producer'
+                  ? 'Zip Code: ' + accountDetails.property_address.cep
+                  : 'Zip Code: ' + accountDetails.activistAddress.cep
+              "
+            ></po-info>
+          </div>
+        </div>
+        <hr />
+        <div>
+          <h4 class="po-ml-1"><b>CERTIFICATE:</b></h4>
+          <div class="po-row">
+            <div class="po-lg-4 po-xl-4 po-offset-lg-1 po-offset-xl-1">
+              <ngx-qrcode
+                [width]="250"
+                [elementType]="elementType"
+                [value]="value"
+                cssClass="aclass"
+              >
+              </ngx-qrcode>
+              <h6>{{ this.accountWallet }}</h6>
+            </div>
+            <div class="po-lg-6 po-xl-6 po-offset-lg-1 po-offset-xl-1">
+              <img
+                src="../../../../assets/img/262543420-sintrop-logo-com-degrade.png"
+                alt="sintropLogo"
+                width="200px"
+                class="mb-3"
+              />
+
+              <div style="margin-top: 20px">
+                <div class="po-row">
+                  <h4
+                    class="po-lg-7"
+                    style="
+                      border: 1px solid black;
+                      border-radius: 5px;
+                      padding: 2px;
+                    "
+                  >
+                    <b>Sustainability Score: <span>{{isaScore}}</span></b>
+                  </h4>
+                </div>
+
+                <div class="po-row" style="margin-top: 20px">
+                  <h4
+                    class="po-lg-7"
+                    style="
+                      border: 1px solid black;
+                      border-radius: 5px;
+                      padding: 2px;
+                    "
+                  >
+                    <b
+                      >{{accountRole == "Producer"?'Total Requests:':'Total Inspections:'}}
+                      <span>{{
+                        accountRole == "Producer"
+                          ? accountDetails.totalRequests
+                          : accountDetails.totalInspections
+                      }}</span></b
+                    >
+                  </h4>
+                </div>
+                <div class="po-row" style="margin-top: 20px">
+                  <h4
+                    class="po-lg-7"
+                    style="
+                      border: 1px solid black;
+                      border-radius: 5px;
+                      padding: 2px;
+                    "
+                  >
+                    <b>
+                      <span style="color: red"> Delations Received: 0</span></b
+                    >
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+<hr>
+    <h2 class="po-mb-2 po-mt-2">Inspection History</h2>
+    <po-list-view
+      p-property-title="name"
+      [p-items]="inspections"
+      [p-actions]="actions"
+    >
+      <ng-template p-list-view-content-template let-item>
+        <div class="po-row po-mb-3">
+          <div class="po-md-6">
+            <div class="po-row">
+              <po-info
+                [p-label]="
+                  accountRole == 'Producer'
+                    ? 'Activist Wallet'
+                    : 'Producer Wallet'
+                "
+                [p-value]="
+                  accountRole == 'Producer'
+                    ? item.activistWallet
+                    : item.producerWallet
+                "
+              ></po-info>
+            </div>
+          </div>
+          <po-info
+            class="po-md-2"
+            p-label="Created At"
+            [p-value]="item.date"
+          ></po-info>
+
+          <po-info
+          [p-orientation]="orientation"
+          class="po-md-2"
+          p-label="Inspection Isa Average"
+          [p-value]="item.isaPoints"
+        ></po-info>
+        </div>
+
+
+
+
+        <ng-container  *ngFor="let result of item.result" >
+          <div class="po-row ">
+            <po-info
+            [p-orientation]="orientation"
+              class="po-md-12"
+              p-label="Result of Inspection {{result.categorie.name}}"
+              [p-value]="result.value"
+            ></po-info>
+          </div>
+        </ng-container>
+
+
+      </ng-template>
+    </po-list-view>
+  </div>
+
+    </po-container>
+
+
+  <po-modal
+  #inspectionModal
+  [p-title]="
+    accountRole == 'Producer' ? 'Activist Account' : 'Producer Account'
+  "
+  p-size="sm"
+>
+  <div class="po-row">
+    <po-info
+      class="po-md-12"
+      [p-label]="
+        accountRole == 'Producer' ? 'Activist Name' : 'Producer Name'
+      "
+      [p-value]="inpectionAccount?.name"
+    >
+    </po-info>
+
+    <po-info
+      class="po-md-12"
+      p-label="Address"
+      [p-value]="
+        accountRole == 'Producer'
+          ? inpectionAccount?.activistAddress.city +
+            ' - ' +
+            inpectionAccount?.activistAddress.state +
+            ', ' +
+            inpectionAccount?.activistAddress.country
+          : inpectionAccount?.property_address.city +
+            ' - ' +
+            inpectionAccount?.property_address?.state +
+            ', ' +
+            inpectionAccount?.property_address?.country
+      "
+    >
+    </po-info>
+    <p class="po-md-12">
+      {{
+        accountRole == "Producer"
+          ? inpectionAccount?.activistAddress.cep
+          : inpectionAccount?.property_address.cep
+      }}
+    </p>
+  </div>
+</po-modal>
+  </div>
+
+
+</po-page-default>

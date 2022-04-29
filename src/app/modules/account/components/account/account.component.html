@@ -1,0 +1,217 @@
+<po-loading-overlay *ngIf="loadingAccount" p-text="Loading">
+</po-loading-overlay>
+
+<po-page-default
+  *ngIf="accountDetails"
+  [p-title]="accountRole + ' Account'"
+  [p-breadcrumb]="breadcrumb"
+>
+  <po-container>
+    <div class="po-row">
+      <po-avatar class="po-md-2" p-src="http://lorempixel.com.br/140/140/?4">
+      </po-avatar>
+
+      <div class="po-lg-5">
+        <po-info
+          class="col-lg-12"
+          p-label="Name"
+          [p-value]="accountDetails.name"
+        >
+        </po-info>
+
+        <po-info
+          class="col-lg-12"
+          p-label="Wallet"
+          [p-value]="
+            accountRole == 'Producer'
+              ? accountDetails.producer_wallet
+              : accountDetails.activistWallet
+          "
+        >
+        </po-info>
+      </div>
+
+      <div class="po-lg-5">
+        <po-info
+          p-label="Address"
+          class="col-lg-12"
+          [p-value]="
+            accountRole == 'Producer'
+              ? accountDetails.property_address.city +
+                ' - ' +
+                accountDetails.property_address.state +
+                ', ' +
+                accountDetails.property_address.country
+              : accountDetails.activistAddress.city +
+                ' - ' +
+                accountDetails.activistAddress.state +
+                ', ' +
+                accountDetails.activistAddress.country
+          "
+        >
+        </po-info>
+
+        <po-info
+          class="col-lg-12"
+          [p-value]="
+            accountRole == 'Producer'
+              ? 'Zip Code: ' + accountDetails.property_address.cep
+              : 'Zip Code: ' + accountDetails.activistAddress.cep
+          "
+        ></po-info>
+      </div>
+    </div>
+
+    <div class="po-row po-mt-2">
+      <po-widget class="po-lg-4 po-mb-1" p-title="Inpections">
+        <div class="po-font-subtitle po-text-center">
+          {{
+            accountDetails.totalRequests
+              ? accountDetails.totalRequests
+              : accountDetails.totalInspections
+          }}
+        </div>
+      </po-widget>
+
+      <po-widget
+        class="po-lg-4 po-mb-1"
+        p-title="Isa Average"
+        [p-primary]="true"
+      >
+        <div class="po-font-subtitle po-text-center">
+          {{this.inspections.length? (this.isaScore / this.inspections.length) :'-'}}
+        </div>
+      </po-widget>
+
+      <po-widget class="po-lg-4 po-mb-1" p-title="Isa Score">
+        <div class="po-font-subtitle po-text-center">{{ this.isaScore }}</div>
+      </po-widget>
+    </div>
+
+    <h2 class="po-mb-2">Inspection History</h2>
+    <po-list-view
+      p-property-title="name"
+      [p-items]="inspections"
+      [p-actions]="actions"
+    >
+      <ng-template p-list-view-content-template let-item>
+        <div class="po-row po-mb-3">
+          <div class="po-md-6">
+            <div class="po-row">
+              <po-info
+                [p-label]="
+                  accountRole == 'Producer'
+                    ? 'Activist Wallet'
+                    : 'Producer Wallet'
+                "
+                [p-value]="
+                  accountRole == 'Producer'
+                    ? item.activistWallet
+                    : item.producerWallet
+                "
+              ></po-info>
+            </div>
+          </div>
+          <po-info
+            class="po-md-2"
+            p-label="Created At"
+            [p-value]="item.date"
+          ></po-info>
+
+          <po-info
+            [p-orientation]="orientation"
+            class="po-md-2"
+            p-label="Inspection Isa Average"
+            [p-value]="item.isaPoints"
+          ></po-info>
+        </div>
+
+        <po-divider></po-divider>
+
+        <ng-container *ngFor="let result of item.result">
+          <div class="po-row">
+            <po-info
+              [p-orientation]="orientation"
+              class="po-md-12"
+              p-label="Category"
+              [p-value]="result.categorie.name"
+            ></po-info>
+          </div>
+
+          <div class="po-row">
+            <po-info
+              class="po-md-12"
+              p-label="Category Description"
+              [p-value]="result.categorie.description"
+            ></po-info>
+          </div>
+
+          <div class="po-row po-mt-2">
+            <po-info
+              [p-orientation]="orientation"
+              class="po-md-12"
+              p-label="Result of Inspection"
+              [p-value]="result.result"
+            ></po-info>
+          </div>
+
+          <div class="po-row">
+            <po-info
+              class="po-md-12"
+              p-label="Result Description"
+              [p-value]="result.resultDescription"
+            ></po-info>
+          </div>
+          <po-divider></po-divider>
+        </ng-container>
+      </ng-template>
+    </po-list-view>
+
+
+  </po-container>
+
+  <po-modal
+    #inspectionModal
+    [p-title]="
+      accountRole == 'Producer' ? 'Activist Account' : 'Producer Account'
+    "
+    p-size="sm"
+  >
+    <div class="po-row">
+      <po-info
+        class="po-md-12"
+        [p-label]="
+          accountRole == 'Producer' ? 'Activist Name' : 'Producer Name'
+        "
+        [p-value]="inpectionAccount?.name"
+      >
+      </po-info>
+
+      <po-info
+        class="po-md-12"
+        p-label="Address"
+        [p-value]="
+          accountRole == 'Producer'
+            ? inpectionAccount?.activistAddress.city +
+              ' - ' +
+              inpectionAccount?.activistAddress.state +
+              ', ' +
+              inpectionAccount?.activistAddress.country
+            : inpectionAccount?.property_address.city +
+              ' - ' +
+              inpectionAccount?.property_address?.state +
+              ', ' +
+              inpectionAccount?.property_address?.country
+        "
+      >
+      </po-info>
+      <p class="po-md-12">
+        {{
+          accountRole == "Producer"
+            ? inpectionAccount?.activistAddress.cep
+            : inpectionAccount?.property_address.cep
+        }}
+      </p>
+    </div>
+  </po-modal>
+</po-page-default>

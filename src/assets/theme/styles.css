@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+
+
+   /* Scroll (opacidade de 50%) */
+   --color-primary-alpha-50: rgba(#7cb228, 0.5);
+
+   /* Botão primário, Links, Cor da borda do input selecionado, Cor da borda do botão secundário */
+   --color-primary:  #7cb228 !important;
+
+   /* Hover do Botão primário, Links, Cor da borda do botão secundário */
+   --color-primary-dark-20: #6c9b20;
+
+   /* Pressed do Botão primário, Links, Cor da borda do botão secundário */
+   --color-primary-dark-40: #486814;
+
+   --color-widget-primary-background-color: #c0d69d;
+
+   --color-widget-background-color: #a364a394;
+}
+
+.po-info-container-content{
+  padding: 0 !important;
+}
+
+.po-menu-sub-items .po-menu-item-level-two {
+  color: #933193 !important;
+
+}
+

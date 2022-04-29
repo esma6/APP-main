@@ -1,0 +1,39 @@
+<po-loading-overlay *ngIf="loadingActivists" p-text="Loading">
+</po-loading-overlay>
+
+
+<po-page-default
+p-title="Activist Ranking"
+  [p-breadcrumb]="breadcrumb"
+
+>
+
+<po-list-view
+  p-property-title="name"
+  [p-items]="activists"
+>
+  <ng-template p-list-view-content-template let-item class="po-mt-0">
+
+    <div class="po-row">
+      <po-avatar class="po-md-2"  p-src="http://lorempixel.com.br/140/140/?3"> </po-avatar>
+      <div class="po-md-3" >
+        <div class="po-row" style="padding: 0 !important; margin: 0 !;" >
+          <po-info  p-label="Address" class="po-md-12" [p-value]="item.activistAddress?.city + ' - '+ item.activistAddress?.state + ' ' + item.activistAddress?.country">
+          </po-info>
+          <po-info  class="po-md-12" [p-value]="'Cep: '+item.activistAddress?.cep">
+
+          </po-info>
+        </div>
+
+      </div>
+      <po-info class="po-md-3" p-label="Inspections Realized" [p-value]="item.totalInspections"></po-info>
+      <po-info class="po-md-2" p-label="Isa" [p-value]="item.isa"></po-info>
+      <po-button p-label="Report Activist" p-type="danger" (p-click)="reportActivist(item)"> </po-button>
+    </div>
+    <div class="po-row">
+      <po-info [p-value]="'Wallet: '+item.activistWallet" style="margin-left: 10px;"></po-info>
+    </div>
+  </ng-template>
+</po-list-view>
+
+</po-page-default>
